@@ -5,14 +5,27 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+
+    public Vector2Int CurrentTile;
+    
+    void GetTilePosition(){}
+
+    public void Move(int actionsLeft)
     {
-        
+        StartCoroutine(MoveCR(actionsLeft));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator MoveCR(int actionsLeft)
     {
+        //Are we having different movement types or only straight?
         
+        for (int i = 0; i < actionsLeft; i++)
+        {
+            //Do Movement
+            //Wait for Movement to complete
+        }
+
+        yield return null;
+
     }
 }
