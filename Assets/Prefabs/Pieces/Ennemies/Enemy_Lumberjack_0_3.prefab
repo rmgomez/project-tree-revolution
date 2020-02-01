@@ -105,6 +105,9 @@ MonoBehaviour:
   maxQuantity: 1
   actualQuantity: 0
   isAlive: 1
+  DisplayLife: 1
+  DisplayLifeObject: {fileID: 980459296244557425, guid: b8be32e4c0e0742999043e4e5cb14f25,
+    type: 3}
 --- !u!114 &7410566281621027043
 MonoBehaviour:
   m_ObjectHideFlags: 0
