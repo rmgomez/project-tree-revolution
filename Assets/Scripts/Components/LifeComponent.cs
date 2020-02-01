@@ -86,7 +86,7 @@ public class LifeComponent : MonoBehaviour
         if (IsObjective)
         {
             LevelManager.Instance.TotalObjectiveLife += maxQuantity;
-            LevelManager.Instance.CurrentNaturePoints += maxQuantity;
+            LevelManager.Instance.CurrentObjectiveLife += maxQuantity;
         }
     }
 }
