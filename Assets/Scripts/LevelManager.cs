@@ -73,6 +73,7 @@ public class LevelManager : Singleton<LevelManager>
                 case LevelState.PlayerTurn:yield return StartCoroutine(PlayerTurn()); break;
                 
                 case LevelState.LevelEnd:
+                    UIManager.Set
                     Debug.Log("Level Completed, go to endScreen");
                     OnLevelEnd?.Invoke();
                     _isPlaying = false;
@@ -104,23 +105,30 @@ public class LevelManager : Singleton<LevelManager>
         Debug.Log("[ENEMY TURN] STARTED");
 
         OnEnemyTurnStarted?.Invoke();
-
-
+        
         yield return StartCoroutine(SubTurnManager.Instance.SubLoop());
         
-       // yield return new WaitForSeconds(2f);
-        
-        //yield return new WaitWhile(() => WaitingForGrid);
-        
-        /*foreach (var enemy in _activeEnemies)
+        if (IsLevelCompleted() || IsLevelFailed())
         {
-            enemy.ExecuteAction();
-            yield return new WaitForSeconds(1f);
-        }*/
+            CurrentState = LevelState.LevelEnd;
+        }
+        else
+        {
+            CurrentTurn++;
+            
+            CurrentState = LevelState.PlayerTurn;
+            
+            yield return AddNaturePoints();
+            
+            OnEnemyTurnCompleted?.Invoke();
+        }
+        
+        yield return new WaitForSeconds(1f);
+    }
 
 
-        // Añadimos puntos de naturaleza en base a aquellos elementos de la escena que tengan esta capacidad
-        // List<GameObject> lista_a_añadir = new List<GameObject>();
+    public IEnumerator AddNaturePoints()
+    {
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("Plant"))
         {
             if (item.GetComponent<Add_nature_points_end_of_round>() != null)
@@ -145,18 +153,6 @@ public class LevelManager : Singleton<LevelManager>
                 // yield return new WaitForSeconds(0.5f);
             }
         }
-
-        
-
-        
-        OnEnemyTurnCompleted?.Invoke();
-        Debug.Log("[ENEMY TURN] COMPLETED");
-        CurrentTurn++;
-        
-        CurrentState = IsLevelCompleted() ? LevelState.LevelEnd : LevelState.PlayerTurn;
-        
-        yield return new WaitForSeconds(2f);
-
     }
     
     private IEnumerator PlayerTurn()
@@ -183,6 +179,11 @@ public class LevelManager : Singleton<LevelManager>
         //LOGIC FOR TURN BASED
         return CurrentTurn >= TotalTurns;
 
+    }
+
+    public bool IsLevelFailed()
+    {
+        return CurrentObjectiveLife <= 0;
     }
 
     public SpellData GetActiveSpellData()
