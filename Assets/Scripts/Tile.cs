@@ -159,12 +159,12 @@ public class Tile : MonoBehaviour
 
 	private void OnMouseEnter()
 	{
-		visualTileInfo.ChangeColor(VisualTileInfos.Over);
+		visualTileInfo.ChangeColor(VisualTileInfos.Over, true);
 	}
 
 	private void OnMouseExit()
 	{
-		visualTileInfo.ChangeColor(VisualTileInfos.Hide);
+		visualTileInfo.ChangeColor(VisualTileInfos.Hide, true);
 	}
 
 #if UNITY_EDITOR

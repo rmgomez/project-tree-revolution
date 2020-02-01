@@ -14,23 +14,37 @@ public class VisualTileInfo : MonoBehaviour
 	private void Awake()
 	{
 		meshRenderer = GetComponent<MeshRenderer>();
-		ChangeColor(VisualTileInfos.Hide);
+		ChangeColor(VisualTileInfos.Hide, false);
 	}
 
-	public void ChangeColor(VisualTileInfos visualTileInfo)
+	private VisualTileInfos visualTileStateSaved = VisualTileInfos.Hide;
+
+	public void ChangeColor(VisualTileInfos visualTileInfo, bool isMouse)
 	{
 		switch (visualTileInfo)
 		{
 			case VisualTileInfos.Hide:
-				meshRenderer.enabled = false;
+
+				if (isMouse)
+				{
+					ChangeColor(visualTileStateSaved, false);
+				}
+				else
+				{
+					meshRenderer.enabled = false;
+					visualTileStateSaved = visualTileInfo;
+				}
+
 				return;
 
 			case VisualTileInfos.Valid:			
 				meshRenderer.sharedMaterial = materialValid;
+				visualTileStateSaved = visualTileInfo;
 				break;
 
 			case VisualTileInfos.Invalid:
 				meshRenderer.sharedMaterial = materialInvalid;
+				visualTileStateSaved = visualTileInfo;
 				break;
 
 			case VisualTileInfos.Selected:
