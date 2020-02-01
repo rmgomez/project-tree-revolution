@@ -151,6 +151,25 @@ public class SubTurnManager : Singleton<SubTurnManager>
 															frontTile.CreateGround(GroundTypes.Explosed);
 															frontTile.canPlantOnIt = false;
 															break;
+
+														case WalkReaction.DeleteAndReplace:
+															if (frontPiece.GetComponent<CanWalkOnIt>().sonido_cuando_se_borra_el_objeto != null) {
+																if (GameObject.Find("LevelManager") != null)
+																{
+																	GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(frontPiece.GetComponent<CanWalkOnIt>().sonido_cuando_se_borra_el_objeto);
+																}
+																else{
+																	Debug.Log("Hey, could not find the LevelManager object to play a cute sound !");
+																}
+															}
+
+															if (frontPiece.GetComponent<CanWalkOnIt>().object_to_replace != null) {
+																GameObject.Instantiate(frontPiece.GetComponent<CanWalkOnIt>().object_to_replace, frontPiece.transform.position, Quaternion.identity);
+																Destroy(frontPiece);
+															}
+
+															break;
+
 													}
 												}
 
