@@ -5,9 +5,9 @@ using UnityEngine;
 public class AttackReactionComponent : MonoBehaviour
 {
     [Range(0, 10)]
-    public int attackForce = 1;
+    public int damages = 1;
 
-    private float animationDuration = 0.5f;
+    public float animationDuration = 0;
 
     public IEnumerator Action()
     {

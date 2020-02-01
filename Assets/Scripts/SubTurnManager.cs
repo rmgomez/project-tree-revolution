@@ -90,10 +90,6 @@ public class SubTurnManager : Singleton<SubTurnManager>
 										var frontTile = gridManager.tileLines[x + 1].tiles[y];
 										var frontPiece = frontTile.piece;
 
-										//Debug.Log("frontPiece [" + (x + 1) + "][" + y + "]" + frontPiece);
-
-										// CanWalkOnIt canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
-
 										CanWalkOnIt canWalkOnIt = null;
 
 										if (frontPiece != null)
@@ -121,7 +117,9 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													{
 														case WalkReaction.Explosion:
 
-															var frontAttack = frontPiece?.GetComponent<AttackComponent>();
+															var frontAttack = frontPiece?.GetComponent<AttackReactionComponent>();
+
+															Debug.LogWarning("frontAttack: " + frontAttack);
 
 															if (frontAttack)
 															{
@@ -221,7 +219,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 																	if (life != null)
 																	{
-																		yield return life.GetDamage(attackReaction.attackForce);
+																		yield return life.GetDamage(attackReaction.damages);
 
 																		if (!life.isAlive)
 																		{
