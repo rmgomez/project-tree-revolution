@@ -32,7 +32,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public AudioClip sonido_ganar_vida;
     public GameObject particula_vida_extra;
-    
+
+    public AudioSource AudioSource;
 
     #region EVENTS
     public static event Action OnLevelStart;
@@ -55,6 +56,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void Init()
     {
+        AudioSource = GetComponent<AudioSource>();
         _isPlaying = true;
         CurrentState = LevelState.PlayerTurn;
         CurrentNaturePoints = InitialNaturePoints;
@@ -73,7 +75,7 @@ public class LevelManager : Singleton<LevelManager>
                 case LevelState.PlayerTurn:yield return StartCoroutine(PlayerTurn()); break;
                 
                 case LevelState.LevelEnd:
-                    UIManager.Set
+                    //UIManager.Set
                     Debug.Log("Level Completed, go to endScreen");
                     OnLevelEnd?.Invoke();
                     _isPlaying = false;
@@ -126,7 +128,7 @@ public class LevelManager : Singleton<LevelManager>
         yield return new WaitForSeconds(1f);
     }
 
-        yield return new WaitForSeconds(0.5f);
+       // yield return new WaitForSeconds(0.5f);
 
     public IEnumerator AddNaturePoints()
     {
