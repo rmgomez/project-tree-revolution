@@ -44,57 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  gridSize: {x: 10, y: 3}
+  gridSize: {x: 5, y: 5}
   defaultY: 0
   tilePrefab: {fileID: 1469398751391665703, guid: c3b2b09f970e7fe46a6ffb13406a1d53,
     type: 3}
-  groundPrefabs:
-  - {fileID: 114490994281256470, guid: f505534bd871b54449935a18f2367e77, type: 3}
-  - {fileID: 114490994281256470, guid: a89979e8352c8144e9927064a6eeb78e, type: 3}
-  piecePrefabs:
-  - {fileID: 1070903957054470639, guid: 904b3fcaabf332a4ca9f91c3b38167ca, type: 3}
-  - {fileID: 1070903957054470639, guid: 365e83ffc0b3bb84086705542f8da9f8, type: 3}
-  - {fileID: 1070903957054470639, guid: e08b25ee4d94e9440b7d62af380adff6, type: 3}
-  - {fileID: 1070903957054470639, guid: e08b25ee4d94e9440b7d62af380adff6, type: 3}
-  tileLines:
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+  prefabList: {fileID: 11400000, guid: dfffbecd824450946b851176900f956d, type: 2}
+  tileLines: []
   debugCreateTile: 0
+  debugPlaceCamera: 0

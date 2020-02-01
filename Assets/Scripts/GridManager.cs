@@ -23,8 +23,10 @@ public class GridManager : Singleton<GridManager>
 
 	public Tile tilePrefab;
 
-	public Ground[] groundPrefabs;
-	public Piece[] piecePrefabs;
+	public PrefabListScriptableObject prefabList;
+
+	//public Ground[] groundPrefabs;
+	//public Piece[] piecePrefabs;
 
 	public TileLine[] tileLines;
 
@@ -42,7 +44,7 @@ public class GridManager : Singleton<GridManager>
 
 	public GameObject GetGroundPrefab(GroundTypes groundType)
 	{
-		foreach (var item in groundPrefabs)
+		foreach (var item in prefabList.grounds)
 		{
 			if (item.groundType == groundType)
 			{
@@ -57,7 +59,7 @@ public class GridManager : Singleton<GridManager>
 
 	public GameObject GetPiecePrefab(PieceTypes pieceType)
 	{
-		foreach (var item in piecePrefabs)
+		foreach (var item in prefabList.pieces)
 		{
 			//Debug.Log(item.pieceType + " | " + pieceType);
 			if (item.pieceType == pieceType)
@@ -189,6 +191,7 @@ public class GridManager : Singleton<GridManager>
 		}
 	}
 
+	[Header("EDITOR")]
 	public bool debugCreateTile = false;
 	public bool debugPlaceCamera = false;
 
