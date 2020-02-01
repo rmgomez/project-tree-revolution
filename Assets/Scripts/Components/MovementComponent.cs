@@ -21,9 +21,9 @@ public class MovementComponent : MonoBehaviour
 
         while (pourcent < 1)
         {
-            pourcent += moveDuration * Time.deltaTime;
+            pourcent += Time.deltaTime / moveDuration;
 
-            transform.position = Vector3.Lerp(prePos, nextPos, pourcent);
+            transform.position = Vector3.LerpUnclamped(prePos, nextPos, Easing.EaseInOut(pourcent, EasingType.Back));
 
             yield return null;
         }
