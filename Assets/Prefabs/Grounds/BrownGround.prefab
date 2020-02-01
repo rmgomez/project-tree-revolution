@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3287889815909507111}
   - component: {fileID: 7014563406905322468}
   m_Layer: 0
-  m_Name: GreenGround
+  m_Name: BorwnGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551f34a1810e70846b8af8c4cb42774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundType: 1
+  groundType: 2
 --- !u!33 &3287889815909507111
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 035099713c250eb44ba2f3f449418cad, type: 2}
+  - {fileID: 2100000, guid: 809123a76fa12db4a901671f7b6174b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

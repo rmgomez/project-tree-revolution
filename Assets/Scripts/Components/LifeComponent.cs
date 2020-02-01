@@ -45,7 +45,7 @@ public class LifeComponent : MonoBehaviour
         EventLifeChange?.Invoke();
     }
 
-    public void GetDamage(int damage)
+    public IEnumerator GetDamage(int damage)
     {
         actualQuantity = damage > actualQuantity ? 0 : actualQuantity - damage;
         if (DisplayLife) LifeText.text = actualQuantity.ToString();
@@ -54,12 +54,16 @@ public class LifeComponent : MonoBehaviour
 
         if (actualQuantity == 0)
         {
-            Death();
+           return Death();
         }
+
+        return null;
     }
 
-    public void Death()
+    public IEnumerator Death()
     {
         isAlive = false;
+
+       return  GetComponent<DeathReaction>()?.Action();
     }
 }

@@ -15,12 +15,14 @@ public class Tile : MonoBehaviour
 	[HideInInspector]
 	public VisualTileInfo visualTileInfo;
 
+	public bool canPlantOnIt = true;
+
 	private void Awake()
 	{
 		visualTileInfo = GetComponentInChildren<VisualTileInfo>();
 	}
 
-	private void CreateGround(GroundTypes newGroundType)
+	public void CreateGround(GroundTypes newGroundType)
 	{
 		groundType = newGroundType;
 

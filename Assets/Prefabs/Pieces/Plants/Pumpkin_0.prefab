@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7866836283725702157}
   - component: {fileID: 7867457764639012599}
   - component: {fileID: 114110666951866822}
+  - component: {fileID: 114067962529081856}
   m_Layer: 0
   m_Name: Pumpkin_0
   m_TagString: Plant
@@ -64,6 +65,8 @@ MonoBehaviour:
   maxQuantity: 3
   actualQuantity: 0
   isAlive: 1
+  DisplayLife: 0
+  DisplayLifeObject: {fileID: 0}
 --- !u!114 &7866836283725702157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +105,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c8aed1dfc57494e9263cc025982ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114067962529081856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330788548991975521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb846a2dd55c0414db6480b8eb7ff209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkReaction: 0
 --- !u!1001 &6419240272892085361
 PrefabInstance:
   m_ObjectHideFlags: 0

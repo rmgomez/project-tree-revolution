@@ -12,6 +12,7 @@ public enum GroundTypes
 	AmbientGrass2 = 5,
 	AmbientGrass3 = 6,
 	AmbientGrass4 = 7,
+	Explosed	  = 8,
 }
 
 public enum PieceTypes
@@ -52,4 +53,9 @@ public enum PlayerActions
 	Place,
 	Heal,
 	Attack
+}
+
+public enum WalkReaction
+{
+	Explosion
 }
