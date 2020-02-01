@@ -100,6 +100,8 @@ public class Tile : MonoBehaviour
 	public void DoActionPlace(PieceTypes pieceType)
 	{
 		CreatePiece(pieceType);
+
+		piece?.GetComponent<SoundComponent>()?.PlayPlaceOnGrid();
 	}
 
 	public void DoActionHeal( int healValue)

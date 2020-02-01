@@ -16,5 +16,7 @@ public class DeathReaction : MonoBehaviour
 
             yield return null;
         }
+
+        GetComponent<SoundComponent>()?.PlayOnDeath();
     }
 }
