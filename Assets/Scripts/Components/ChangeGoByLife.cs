@@ -6,7 +6,6 @@ using UnityEngine;
 public class ChangeGoByLife : MonoBehaviour
 {
     public GameObject[] visualList;
-
     private LifeComponent lifeComponent;
     private void Awake()
     {
@@ -29,7 +28,7 @@ public class ChangeGoByLife : MonoBehaviour
 
         if (lifeComponent.actualQuantity == 0)
         {
-            visualList[0].SetActive(true);
+            visualList[visualList.Length-1].SetActive(true);
         }
         else if (visualList.Length > lifeComponent.actualQuantity - 1)
         {
