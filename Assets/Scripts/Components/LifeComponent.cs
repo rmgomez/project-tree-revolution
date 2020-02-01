@@ -26,7 +26,7 @@ public class LifeComponent : MonoBehaviour
         if (DisplayLife)
         {
             LifeText = Instantiate(DisplayLifeObject, transform).GetComponent<TextMesh>();
-            //LifeText.text = actualQuantity.ToString();
+            LifeText.text = actualQuantity.ToString();
         }
     }
 
