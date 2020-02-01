@@ -24,6 +24,9 @@ public enum PieceTypes
 	ThreeBig1		= 9,
 	ThreeBig2		= 10,
 	Bee				= 2,
+	River0			=14,
+	River1 = 15,
+	River2 = 16,
 
 	// Enemies
 	EnnemyOne		= 3,
