@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8138680629072840495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7450421214306566471}
+  - component: {fileID: 3354358957190430508}
+  - component: {fileID: 6777859099098363665}
+  - component: {fileID: 8742150223695547464}
+  - component: {fileID: 4390286116337227675}
+  - component: {fileID: 4400956574332851415}
+  - component: {fileID: 3368187122010283146}
+  m_Layer: 0
+  m_Name: Enemy_Lumberjack_1_0
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7450421214306566471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7435945, y: -0.25, z: 5.2368193}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8634338060011652311}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3354358957190430508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fbad6629df9821498ac99182722d1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceType: 6
+--- !u!114 &6777859099098363665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a194d5efb9ee9468bc23b97a357b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+--- !u!114 &8742150223695547464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55362771b70acae40b910725f18b8387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxActionPoints: 1
+  actualActionPoints: 0
+--- !u!114 &4390286116337227675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e18ec7318df496684e828a26f9bbd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackForce: 1
+--- !u!114 &4400956574332851415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd8545909f3b40acbd736a19ac7fd25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxQuantity: 1
+  actualQuantity: 0
+  isAlive: 1
+--- !u!114 &3368187122010283146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138680629072840495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6227938d1b1054092beb170e934997d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTile: {x: 0, y: 0}
+--- !u!1001 &8634338060012052055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7450421214306566471}
+    m_Modifications:
+    - target: {fileID: 100000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_Name
+      value: lumberjack_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe57df43dfcb14ef9ac024451c805278, type: 3}
+--- !u!4 &8634338060011652311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: fe57df43dfcb14ef9ac024451c805278,
+    type: 3}
+  m_PrefabInstance: {fileID: 8634338060012052055}
+  m_PrefabAsset: {fileID: 0}
