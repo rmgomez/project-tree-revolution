@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7866836283725702157}
   - component: {fileID: 7867457764639012599}
   - component: {fileID: 114349235695892842}
+  - component: {fileID: 114377810187921034}
   m_Layer: 0
   m_Name: Sheep_0
   m_TagString: Plant
@@ -28,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4330788548991975521}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.70710224, z: -0, w: 0.7071114}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2338017182353536731}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 89.999, z: 0}
 --- !u!114 &7090205573009799266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,10 @@ MonoBehaviour:
   maxQuantity: 3
   actualQuantity: 0
   isAlive: 1
+  KeepLastVisual: 0
+  IsObjective: 0
+  DisplayLife: 0
+  DisplayLifeObject: {fileID: 0}
 --- !u!114 &7866836283725702157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +108,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to_add: 1
+--- !u!114 &114377810187921034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330788548991975521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb846a2dd55c0414db6480b8eb7ff209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkReaction: 1
+  object_to_replace: {fileID: 1959406465927999627, guid: 43f3d588feaeed64ca7e478193152a7f,
+    type: 3}
+  sonido_cuando_se_borra_el_objeto: {fileID: 8300000, guid: 3a500e57cf51c0348af7c4342ea99e30,
+    type: 3}
 --- !u!1001 &2338017182353927259
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -43,13 +43,13 @@ public class GridManager : Singleton<GridManager>
 		return tileLines[X].tiles[Y];
 	}
 
-	public GameObject GetGroundPrefab(GroundTypes groundType)
+	public Ground GetGroundPrefab(GroundTypes groundType)
 	{
 		foreach (var item in prefabList.grounds)
 		{
 			if (item.groundType == groundType)
 			{
-				return item.gameObject;
+				return item;
 			}
 		}
 
@@ -58,14 +58,14 @@ public class GridManager : Singleton<GridManager>
 		return null;
 	}
 
-	public GameObject GetPiecePrefab(PieceTypes pieceType)
+	public Piece GetPiecePrefab(PieceTypes pieceType)
 	{
 		foreach (var item in prefabList.pieces)
 		{
 			//Debug.Log(item.pieceType + " | " + pieceType);
 			if (item.pieceType == pieceType)
 			{
-				return item.gameObject;
+				return item;
 			}
 		}
 

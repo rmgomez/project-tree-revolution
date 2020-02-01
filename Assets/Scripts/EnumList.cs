@@ -60,5 +60,6 @@ public enum PlayerActions
 
 public enum WalkReaction
 {
-	Explosion
+	Explosion,
+	DeleteAndReplace,
 }
