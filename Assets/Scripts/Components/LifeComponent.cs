@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LifeComponent : MonoBehaviour
 {
+    public delegate void Event();
+
+    public Event EventLifeChange;
+
+
     [Range(0, 10)]
     public int maxQuantity = 1;
     [HideInInspector]
@@ -27,11 +32,15 @@ public class LifeComponent : MonoBehaviour
     public void GetHeal(int heal)
     {
         actualQuantity = heal + actualQuantity > maxQuantity ? maxQuantity : heal + actualQuantity;
+
+        EventLifeChange?.Invoke();
     }
 
     public void GetDamage(int damage)
     {
         actualQuantity = damage > actualQuantity ? 0 : actualQuantity - damage;
+
+        EventLifeChange?.Invoke();
 
         if (actualQuantity == 0)
         {

@@ -16,14 +16,17 @@ public enum GroundTypes
 
 public enum PieceTypes
 {
-	Nothing        = 0,
-	Three          = 1,
-	Bee            = 2,
-	EnnemyOne      = 3,
-	EnnemyTwo      = 4,
-	Lumberjack     = 5,
-	Lumberjack_Hat = 6,
-	Pumpkin        = 7,
+	Nothing			= 0,
+	ThreeMedium     = 1,
+	ThreeBig0		= 8,
+	ThreeBig1		= 9,
+	ThreeBig2		= 10,
+	Bee				= 2,
+	EnnemyOne		= 3,
+	EnnemyTwo		= 4,
+	Lumberjack		= 5,
+	Lumberjack_Hat	= 6,
+	Pumpkin			= 7,
 }
 
 public enum VisualTileInfos
