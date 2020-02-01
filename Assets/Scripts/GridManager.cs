@@ -136,7 +136,7 @@ public class GridManager : Singleton<GridManager>
 				{
 					for (int z = 0; z < gridSize.y; z++)
 					{
-						if (tileLines[x].tiles[z].piece == null)
+						if (tileLines[x].tiles[z].piece == null && tileLines[x].tiles[z].canPlantOnIt)
 						{
 							tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid, false);
 						}
