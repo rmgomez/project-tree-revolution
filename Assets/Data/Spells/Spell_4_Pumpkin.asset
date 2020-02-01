@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c000ca905da460e9dc49ad9526ea1d, type: 3}
+  m_Name: Spell_4_Pumpkin
+  m_EditorClassIdentifier: 
+  SpellID: 1
+  SpellName: PUMPKIN
+  NaturePoints: 5
+  ButtonIcon: {fileID: 21300000, guid: 3a14fa0402206f84b8b6b7306f08abfb, type: 3}
+  PieceToSpawn: 2
+  HealAmount: 1
+  AttackAmount: 3
+  Action: 2

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum GroundTypes
 {
-	Void = 0,
+	Void  = 0,
 	Green = 1,
 	Brown = 2,
 	AmbientGrass0 = 3,
@@ -16,13 +16,14 @@ public enum GroundTypes
 
 public enum PieceTypes
 {
-	Nothing = 0,
-	Three = 1,
-	Bee = 2,
-	EnnemyOne = 3,
-	EnnemyTwo = 4,
-	Lumberjack = 5,
+	Nothing        = 0,
+	Three          = 1,
+	Bee            = 2,
+	EnnemyOne      = 3,
+	EnnemyTwo      = 4,
+	Lumberjack     = 5,
 	Lumberjack_Hat = 6,
+	Pumpkin        = 7,
 }
 
 public enum VisualTileInfos

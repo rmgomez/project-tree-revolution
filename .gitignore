@@ -48,3 +48,5 @@ Assets/Plugins/Editor/JetBrains.meta
 .DS_Store
 .AppleDouble
 .LSOverride
+
+.vscode/settings.json
