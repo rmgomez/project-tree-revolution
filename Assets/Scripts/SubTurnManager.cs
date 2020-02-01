@@ -10,7 +10,6 @@ public class SubTurnManager : Singleton<SubTurnManager>
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			Debug.Log("Start Sub Turn");
 			StartSubTurn();
 		}
 	}
@@ -20,6 +19,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 		if (!isUpdating)
 		{
 			isUpdating = true;
+			Debug.Log("Start Sub Turn");
 			StartCoroutine(SubLoop());
 		}	
 	}
@@ -89,7 +89,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 										var frontTile = gridManager.tileLines[x + 1].tiles[y];
 										var frontPiece = frontTile.piece;
 
-										Debug.Log("frontPiece [" + (x + 1) + "][" + y + "]" + frontPiece);
+										//Debug.Log("frontPiece [" + (x + 1) + "][" + y + "]" + frontPiece);
 
 										if (frontPiece == null)
 										{
@@ -205,8 +205,6 @@ public class SubTurnManager : Singleton<SubTurnManager>
 			{
 				actualPriority++;
 			}
-
-			//yield return new WaitForSeconds(0.2f);
 		}
 
 		isUpdating = false;
