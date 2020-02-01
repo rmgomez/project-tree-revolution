@@ -17,3 +17,17 @@ public enum PieceTypes
 	EnnemyOne,
 	EnnemyTwo
 }
+
+public enum VisualTileInfos
+{
+	Hide,
+	Valid,
+	Invalid
+}
+
+public enum PlayerActions
+{
+	Place,
+	Heal,
+	Attack
+}

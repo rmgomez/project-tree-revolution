@@ -12,6 +12,14 @@ public class Tile : MonoBehaviour
 	[HideInInspector]
 	public GameObject piece;
 
+	[HideInInspector]
+	public VisualTileInfo visualTileInfo;
+
+	private void Awake()
+	{
+		visualTileInfo = GetComponentInChildren<VisualTileInfo>();
+	}
+
 	private void CreateGround(GroundTypes newGroundType)
 	{
 		groundType = newGroundType;
