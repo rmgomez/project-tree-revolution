@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1573784904660602233
 Transform:
@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa65b1e53405f43e2b4b88ce13c11c31, type: 2}
   - {fileID: 11400000, guid: fa65b1e53405f43e2b4b88ce13c11c31, type: 2}
   InitialNaturePoints: 10
+  NaturePointsPerTurn: 0
   SelectedSpellID: 0
   CurrentNaturePoints: 0
   CurrentState: 0

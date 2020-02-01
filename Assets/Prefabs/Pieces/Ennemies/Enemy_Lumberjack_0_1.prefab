@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5346892198710800957}
   - component: {fileID: 6457766970669840992}
   m_Layer: 0
-  m_Name: Enemy_Lumberjack_Blue_Hat
+  m_Name: Enemy_Lumberjack_0_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,6 +105,9 @@ MonoBehaviour:
   maxQuantity: 1
   actualQuantity: 0
   isAlive: 1
+  DisplayLife: 1
+  DisplayLifeObject: {fileID: 980459296244557425, guid: b8be32e4c0e0742999043e4e5cb14f25,
+    type: 3}
 --- !u!114 &6457766970669840992
 MonoBehaviour:
   m_ObjectHideFlags: 0
