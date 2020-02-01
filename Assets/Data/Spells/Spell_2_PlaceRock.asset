@@ -17,6 +17,6 @@ MonoBehaviour:
   NaturePoints: 5
   ButtonIcon: {fileID: 21300000, guid: d23b366c8a71b3f448f508349d52f5c4, type: 3}
   PieceToSpawn: 11
-  HealAmount: 1
-  AttackAmount: 3
+  HealAmount: 0
+  AttackAmount: 0
   Action: 0
