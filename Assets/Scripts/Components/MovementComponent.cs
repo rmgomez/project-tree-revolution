@@ -7,7 +7,7 @@ public class MovementComponent : MonoBehaviour
     //[Range(0, 10)]
    //private int distanceByTurn = 1;
 
-    private float moveDuration = 1;
+    private float moveDuration = 0.5f;
 
     [HideInInspector]
     public Vector2Int CurrentTile;
