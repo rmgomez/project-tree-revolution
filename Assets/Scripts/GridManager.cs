@@ -15,20 +15,24 @@ public class TileLine
 
 public class GridManager : Singleton<GridManager>
 {
+
+	// Variables ///////////////////////////////////////////////////
+
 	private const string TagPlant = "Plant";
 	private const string TagEnemy = "Enemy";
-
 	public Vector2Int gridSize = new Vector2Int(5, 5);
 	public int defaultY = 0;
-
 	public Tile tilePrefab;
-
 	public PrefabListScriptableObject prefabList;
-
 	//public Ground[] groundPrefabs;
 	//public Piece[] piecePrefabs;
-
 	public TileLine[] tileLines;
+
+	// Aesthetic elements
+	// public GameObject prefab_borde_mapa;
+	public GameObject prefab_esquina_mapa;
+
+	// Functions ///////////////////////////////////////////////////
 
 	public Tile GetTileByPos(int X, int Y)
 	{
@@ -40,7 +44,6 @@ public class GridManager : Singleton<GridManager>
 
 		return tileLines[X].tiles[Y];
 	}
-
 
 	public GameObject GetGroundPrefab(GroundTypes groundType)
 	{
@@ -170,6 +173,31 @@ public class GridManager : Singleton<GridManager>
 		}
 	}
 
+	public void Generate_map_borders() {
+
+		Vector3 offset = new Vector3(0.5f, 0, 0.5f);
+
+		// if (prefab_borde_mapa != null)   { Debug.Log("Warning, prefab_borde_mapa needs to be added !"); }
+		if (prefab_esquina_mapa != null) { Debug.Log("Warning, prefab_esquina_mapa needs to be added !"); }
+
+		if (prefab_esquina_mapa != null)
+		{
+			for (int i = 0; i < gridSize.x; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(i,  0, 0)          - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.x; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(i,  0, gridSize.y+1) - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.y; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, i+1)          - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.y; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, i+1) - offset, Quaternion.identity); }
+
+			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, 0) - offset, Quaternion.identity);
+			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, gridSize.y+1) - offset, Quaternion.identity);
+			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, 0) - offset, Quaternion.identity);
+			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, gridSize.y+1) - offset, Quaternion.identity);
+		}
+	}
+
+	private void Start()
+	{
+		Generate_map_borders();
+	}
 
 
 #if UNITY_EDITOR
