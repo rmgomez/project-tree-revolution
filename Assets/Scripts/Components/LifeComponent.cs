@@ -16,6 +16,14 @@ public class LifeComponent : MonoBehaviour
         actualQuantity = maxQuantity;
     }
 
+    public bool CanBeHeal
+    {
+        get
+        {
+            return actualQuantity < maxQuantity;
+        }
+    }
+
     public void GetHeal(int heal)
     {
         actualQuantity = heal + actualQuantity > maxQuantity ? maxQuantity : heal + actualQuantity;

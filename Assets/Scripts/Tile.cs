@@ -93,6 +93,31 @@ public class Tile : MonoBehaviour
 #endif
 	}
 
+	public void DoActionPlace(PieceTypes pieceType)
+	{
+		CreatePiece(pieceType);
+	}
+
+	public void DoActionHeal(PieceTypes pieceType, int healValue)
+	{
+		var life = piece?.GetComponent<LifeComponent>();
+
+		if (life)
+		{
+			life.GetHeal(healValue);
+		}
+	}
+
+	public void DoActionAttack(PieceTypes pieceType, int attackValue)
+	{
+		var life = piece?.GetComponent<LifeComponent>();
+
+		if (life)
+		{
+			life.GetDamage(attackValue);
+		}
+	}
+
 	public bool TestIfCanDoAction(PlayerActions playerAction)
 	{
 		switch (playerAction)
@@ -105,11 +130,27 @@ public class Tile : MonoBehaviour
 				break;
 
 			case PlayerActions.Heal:
+				if (piece != null && piece.CompareTag("Plant"))
+				{
+					var life = piece.GetComponent<LifeComponent>();
 
+					if (life && life.CanBeHeal)
+					{
+						return true;
+					}
+				}
 				break;
 
 			case PlayerActions.Attack:
+				if (piece != null && piece.CompareTag("Enemy"))
+				{
+					var life = piece.GetComponent<LifeComponent>();
 
+					if (life)
+					{
+						return true;
+					}
+				}
 				break;
 		}
 

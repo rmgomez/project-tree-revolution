@@ -105,7 +105,7 @@ public class GridManager : Singleton<GridManager>
 						{
 							var life = tileLines[x].tiles[z].piece.GetComponent<LifeComponent>();
 
-							if (life != null && life.actualQuantity < life.maxQuantity)
+							if (life != null && life.CanBeHeal)
 							{
 								tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid);
 								continue;
@@ -178,12 +178,6 @@ public class GridManager : Singleton<GridManager>
 				tileLines[x].tiles[z].name = $"Tile[{x}][{z}]";
 			}
 		}
-
-		if (Camera.main)
-		{
-			Camera.main.transform.position = new Vector3(gridSize.x/2, 10, gridSize.y/2);
-			Camera.main.transform.eulerAngles = new Vector3(90, 0, 0);
-		}
 	}
 
 	private void DestroyGrid()
@@ -196,6 +190,7 @@ public class GridManager : Singleton<GridManager>
 	}
 
 	public bool debugCreateTile = false;
+	public bool debugPlaceCamera = false;
 
 	private void OnDrawGizmosSelected()
 	{
@@ -204,6 +199,17 @@ public class GridManager : Singleton<GridManager>
 			debugCreateTile = false;
 
 			SpawnGrid();
+		}
+
+		if (debugPlaceCamera)
+		{
+			debugPlaceCamera = false;
+
+			if (Camera.main)
+			{
+				Camera.main.transform.position = new Vector3(gridSize.x / 2, 10, gridSize.y / 2);
+				Camera.main.transform.eulerAngles = new Vector3(90, 0, 0);
+			}
 		}
 	}
 
