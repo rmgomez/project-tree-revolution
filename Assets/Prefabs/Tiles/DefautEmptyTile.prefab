@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1149879679965895877
 Transform:
@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7175f06ce3f434caae71b346c592fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTypes: 0
+  groundType: 0
   ground: {fileID: 0}
-  pieceTypes: 0
+  pieceType: 0
   piece: {fileID: 0}
+  _groundType: 0
+  _pieceType: 0

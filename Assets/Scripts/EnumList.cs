@@ -13,5 +13,7 @@ public enum PieceTypes
 {
 	Nothing,
 	Three,
-	Bee
+	Bee,
+	EnnemyOne,
+	EnnemyTwo
 }

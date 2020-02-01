@@ -47,7 +47,7 @@ public class GridManager : Singleton<GridManager>
 			}
 		}
 
-		Debug.LogWarning("No Prefab find for " + groundType);
+		Debug.LogWarning("No Ground Prefab find for " + groundType);
 
 		return null;
 	}
@@ -56,13 +56,14 @@ public class GridManager : Singleton<GridManager>
 	{
 		foreach (var item in piecePrefabs)
 		{
+			//Debug.Log(item.pieceType + " | " + pieceType);
 			if (item.pieceType == pieceType)
 			{
 				return item.gameObject;
 			}
 		}
 
-		Debug.LogWarning("No Prefab find for " + pieceType);
+		Debug.LogWarning("No Piece Prefab find for " + pieceType);
 
 		return null;
 	}

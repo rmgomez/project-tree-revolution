@@ -4,69 +4,113 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	public GroundTypes groundTypes = GroundTypes.Void;
+	public GroundTypes groundType = GroundTypes.Void;
 	[HideInInspector]
 	public GameObject ground;
 
-	public PieceTypes pieceTypes = PieceTypes.Nothing;
+	public PieceTypes pieceType = PieceTypes.Nothing;
 	[HideInInspector]
 	public GameObject piece;
 
-
-	private GroundTypes _groundTypes = GroundTypes.Void;
-	private PieceTypes _pieceTypes = PieceTypes.Nothing;
-
-	private void Awake()
+	private void CreateGround(GroundTypes newGroundType)
 	{
-		//AutoCreateTileContent();
+		groundType = newGroundType;
+
+		if (ground != null)
+		{
+			DestroyImmediate(ground);
+		}
+
+		if (groundType != GroundTypes.Void)
+		{
+			GameObject prefab = GridManager.Instance.GetGroundPrefab(groundType);
+
+			if (prefab != null)
+			{
+				ground = Instantiate(prefab, transform.position, prefab.transform.rotation, transform);
+			}
+		}
 	}
 
+
+	public void CreatePiece(PieceTypes newPieceTypes)
+	{
+		pieceType = newPieceTypes;
+
+		if (piece != null)
+		{
+			DestroyImmediate(piece);
+		}
+
+		if (pieceType != PieceTypes.Nothing)
+		{
+			GameObject prefab = GridManager.Instance.GetPiecePrefab(pieceType);
+
+			if (prefab != null)
+			{
+				piece = Instantiate(prefab, transform.position, prefab.transform.rotation, transform);
+			}
+		}
+	}
+
+	public void ChangePiece(GameObject newPiece, PieceTypes newPieceTypes)
+	{
+		piece = newPiece;
+		pieceType = newPieceTypes;
+
+#if UNITY_EDITOR
+		_pieceType = pieceType;
+#endif
+	}
+
+	public void RemovePiece()
+	{
+		piece = null;
+		pieceType = PieceTypes.Nothing;
+
+#if UNITY_EDITOR
+		_pieceType = pieceType;
+#endif
+	}
+
+	public void DestroyPiece()
+	{
+		Destroy(piece);
+
+		piece = null;
+		pieceType = PieceTypes.Nothing;
+
+#if UNITY_EDITOR
+		_pieceType = pieceType;
+#endif
+	}
+
+#if UNITY_EDITOR
+
+	//[Header("DEBUG")]
+	//[SerializeField]
+	private GroundTypes _groundType = GroundTypes.Void;
+	//[SerializeField]
+	private PieceTypes _pieceType = PieceTypes.Nothing;
 
 	private void OnDrawGizmos()
 	{
-		AutoCreateTileContent();
-	}
-
-	private void AutoCreateTileContent()
-	{
-		if (groundTypes != _groundTypes)
+		if (Application.isPlaying)
 		{
-			_groundTypes = groundTypes;
-
-			if (ground != null)
-			{
-				DestroyImmediate(ground);
-			}
-
-			if (_groundTypes != GroundTypes.Void)
-			{
-				GameObject prefab = GridManager.Instance.GetGroundPrefab(_groundTypes);
-
-				if (prefab != null)
-				{
-					ground = Instantiate(prefab, transform.position, transform.rotation, transform);
-				}
-			}
+			return;
 		}
 
-		if (pieceTypes != _pieceTypes)
+		if (pieceType != _pieceType)
 		{
-			_pieceTypes = pieceTypes;
+			CreatePiece(pieceType);
+			_pieceType = pieceType;
+		}
 
-			if (piece != null)
-			{
-				DestroyImmediate(piece);
-			}
-
-			if (_pieceTypes != PieceTypes.Nothing)
-			{
-				GameObject prefab = GridManager.Instance.GetPiecePrefab(_pieceTypes);
-
-				if (prefab != null)
-				{
-					piece = Instantiate(prefab, transform.position, transform.rotation, transform);
-				}
-			}
+		if (groundType != _groundType)
+		{
+			CreateGround(groundType);
+			_groundType = groundType;
 		}
 	}
+#endif
 }
