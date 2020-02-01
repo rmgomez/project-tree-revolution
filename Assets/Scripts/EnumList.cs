@@ -11,11 +11,13 @@ public enum GroundTypes
 
 public enum PieceTypes
 {
-	Nothing,
-	Three,
-	Bee,
-	EnnemyOne,
-	EnnemyTwo
+	Nothing = 0,
+	Three = 1,
+	Bee = 2,
+	EnnemyOne = 3,
+	EnnemyTwo = 4,
+	Lumberjack = 5,
+	Lumberjack_Hat = 6,
 }
 
 public enum VisualTileInfos
