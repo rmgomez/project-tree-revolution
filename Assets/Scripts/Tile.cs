@@ -125,7 +125,7 @@ public class Tile : MonoBehaviour
 		switch (playerAction)
 		{
 			case PlayerActions.Place:
-				if (piece == null)
+				if (piece == null && canPlantOnIt)
 				{
 					return true;
 				}
