@@ -16,9 +16,11 @@ public class LevelManager : Singleton<LevelManager>
     public int InitialNaturePoints;
     public int NaturePointsPerTurn;
 
-    
+
     [Header("Debug state:")] 
-    
+    public int TotalObjectiveLife;
+
+    public int CurrentObjectiveLife;
     public int SelectedSpellID;
     public int CurrentNaturePoints;
     public LevelState CurrentState;
@@ -90,7 +92,9 @@ public class LevelManager : Singleton<LevelManager>
         //RESET LEVEL STATE
         CurrentTurn = 0;
         WatingForPlayer = false;
-        
+        CurrentObjectiveLife = 0;
+        TotalObjectiveLife = 0;
+
     }
 
     private IEnumerator EnemyTurn()
