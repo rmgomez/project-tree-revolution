@@ -7,7 +7,7 @@ public class AttackComponent : MonoBehaviour
     [Range(0, 10)]
     public int attackForce = 1;
 
-    private float animationDuration = 0.5f;
+    private float animationDuration = 0.1f;
 
     public IEnumerator Action()
     {
