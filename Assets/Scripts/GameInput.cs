@@ -29,7 +29,7 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _allowInput)
+        if (Input.GetMouseButtonDown(0) && _allowInput && LevelManager.Instance.CanCastActiveSpell())
         {
             DetectTouch();
         }
@@ -63,6 +63,8 @@ public class GameInput : MonoBehaviour
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+
+                LevelManager.Instance.CurrentNaturePoints -= data.NaturePoints;
             }
             
            

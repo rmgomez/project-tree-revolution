@@ -14,6 +14,7 @@ public class LevelManager : Singleton<LevelManager>
     public int TotalTurns;
     public List<SpellData> LevelSpells;
     public int InitialNaturePoints;
+    public int NaturePointsPerTurn;
 
     
     [Header("Debug state:")] 
@@ -122,7 +123,7 @@ public class LevelManager : Singleton<LevelManager>
     private IEnumerator PlayerTurn()
     {
         WatingForPlayer = true;
-        
+        CurrentNaturePoints += NaturePointsPerTurn;
         Debug.Log("[PLAYER TURN] STARTED");
         
         OnPlayerTurnStarted?.Invoke();
@@ -148,6 +149,11 @@ public class LevelManager : Singleton<LevelManager>
     public SpellData GetActiveSpellData()
     {
         return GetSpellData(SelectedSpellID);
+    }
+
+    public bool CanCastActiveSpell()
+    {
+        return GetActiveSpellData().NaturePoints <= CurrentNaturePoints;
     }
     
     public SpellData GetSpellData(int spellID)
