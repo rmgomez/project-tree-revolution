@@ -60,9 +60,17 @@ public class LifeComponent : MonoBehaviour
 
     public IEnumerator GetDamage(int damage)
     {
-        if(IsObjective && isAlive) LevelManager.Instance.CurrentObjectiveLife -= damage;
+        if(IsObjective && isAlive)
+        {
+            LevelManager.Instance.CurrentObjectiveLife -= damage;
+        }
+
         actualQuantity = damage > actualQuantity ? 0 : actualQuantity - damage;
-        if (DisplayLife) LifeText.text = actualQuantity.ToString();
+
+        if (DisplayLife)
+        {
+            LifeText.text = actualQuantity.ToString();
+        }
 
         EventLifeChange?.Invoke();
 

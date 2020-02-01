@@ -62,9 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd8545909f3b40acbd736a19ac7fd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxQuantity: 3
+  maxQuantity: 0
   actualQuantity: 0
   isAlive: 1
+  KeepLastVisual: 0
+  IsObjective: 0
   DisplayLife: 0
   DisplayLifeObject: {fileID: 0}
 --- !u!114 &7866836283725702157

@@ -38,9 +38,9 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 				if (tile.piece != null)
 				{
-					GameObject actualGO = tile.piece;
+					Piece actualPiece = tile.piece;
 
-					var actionPointComponent = actualGO.GetComponent<ActionPointComponent>();
+					var actionPointComponent = actualPiece.GetComponent<ActionPointComponent>();
 
 					if (actionPointComponent != null)
 					{
@@ -66,16 +66,16 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 					if (tile.piece != null)
 					{
-						GameObject actualGO = tile.piece;
+						Piece actualPiece = tile.piece;
 
-						var priorityComponent = actualGO.GetComponent<PriorityComponent>();
+						var priorityComponent = actualPiece.GetComponent<PriorityComponent>();
 
 						if (priorityComponent != null)
 						{
 							if (priorityComponent.priority == actualPriority)
 							{
 
-								var actionPoint = actualGO.GetComponent<ActionPointComponent>();
+								var actionPoint = actualPiece.GetComponent<ActionPointComponent>();
 
 								//var attack = go.GetComponent<AttackComponent>();
 								//var life = go.GetComponent<LifeComponent>();
@@ -96,16 +96,15 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 										CanWalkOnIt canWalkOnIt = null;
 
-										if (frontPiece != null) {
-											canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
-										} else {
-											canWalkOnIt = null;
+										if (frontPiece != null)
+										{
+											canWalkOnIt = frontPiece.GetComponent<CanWalkOnIt>();
 										}
 
 										if (frontPiece == null || canWalkOnIt != null)
 										{
 											//move
-											var move = actualGO.GetComponent<MovementComponent>();
+											var move = actualPiece.GetComponent<MovementComponent>();
 
 											if (move != null)
 											{
@@ -122,7 +121,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													{
 														case WalkReaction.Explosion:
 
-															var frontAttack = frontPiece.GetComponent<AttackComponent>();
+															var frontAttack = frontPiece?.GetComponent<AttackComponent>();
 
 															if (frontAttack)
 															{
@@ -139,17 +138,16 @@ public class SubTurnManager : Singleton<SubTurnManager>
 																}
 															}
 
-															var frontLife = frontPiece.GetComponent<LifeComponent>();
+															var frontLife = frontPiece?.GetComponent<LifeComponent>();
 
 															yield return frontLife?.Death();
 
 															if (!frontLife.isAlive)
 															{
-																Destroy(frontPiece);
+																Destroy(frontPiece.gameObject);
 															}
 
 															frontTile.CreateGround(GroundTypes.Explosed);
-															frontTile.canPlantOnIt = false;
 															break;
 
 														case WalkReaction.DeleteAndReplace:
@@ -192,7 +190,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 												if (frontPiece.CompareTag(TagPlant))
 												{
 													//attack
-													var attack = actualGO.GetComponent<AttackComponent>();
+													var attack = actualPiece.GetComponent<AttackComponent>();
 
 													if (attack != null)
 													{
@@ -224,7 +222,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 																{
 																	yield return attackReaction.Action();
 
-																	var life = actualGO.GetComponent<LifeComponent>();
+																	var life = actualPiece.GetComponent<LifeComponent>();
 
 																	if (life != null)
 																	{
@@ -260,7 +258,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 						}
 						else
 						{
-							Debug.LogError("Need to add a ActionPointComponent", actualGO);
+							Debug.LogError("Need to add a ActionPointComponent", actualPiece);
 						}
 					}
 				}

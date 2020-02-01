@@ -6,11 +6,11 @@ public class Tile : MonoBehaviour
 {
 	public GroundTypes groundType = GroundTypes.Void;
 	[HideInInspector]
-	public GameObject ground;
+	public Ground ground;
 
 	public PieceTypes pieceType = PieceTypes.Nothing;
 	[HideInInspector]
-	public GameObject piece;
+	public Piece piece;
 
 	[HideInInspector]
 	public VisualTileInfo visualTileInfo;
@@ -28,16 +28,18 @@ public class Tile : MonoBehaviour
 
 		if (ground != null)
 		{
-			DestroyImmediate(ground);
+			DestroyImmediate(ground.gameObject);
 		}
 
 		if (groundType != GroundTypes.Void)
 		{
-			GameObject prefab = GridManager.Instance.GetGroundPrefab(groundType);
+			Ground prefab = GridManager.Instance.GetGroundPrefab(groundType);
 
 			if (prefab != null)
 			{
 				ground = Instantiate(prefab, transform.position, prefab.transform.rotation, transform);
+
+				canPlantOnIt = prefab.canPlantOnIt;
 			}
 		}
 	}
@@ -49,12 +51,12 @@ public class Tile : MonoBehaviour
 
 		if (piece != null)
 		{
-			DestroyImmediate(piece);
+			DestroyImmediate(piece.gameObject);
 		}
 
 		if (pieceType != PieceTypes.Nothing)
 		{
-			GameObject prefab = GridManager.Instance.GetPiecePrefab(pieceType);
+			Piece prefab = GridManager.Instance.GetPiecePrefab(pieceType);
 
 			if (prefab != null)
 			{
@@ -63,7 +65,7 @@ public class Tile : MonoBehaviour
 		}
 	}
 
-	public void ChangePiece(GameObject newPiece, PieceTypes newPieceTypes)
+	public void ChangePiece(Piece newPiece, PieceTypes newPieceTypes)
 	{
 		piece = newPiece;
 		pieceType = newPieceTypes;
@@ -85,7 +87,7 @@ public class Tile : MonoBehaviour
 
 	public void DestroyPiece()
 	{
-		Destroy(piece);
+		Destroy(piece.gameObject);
 
 		piece = null;
 		pieceType = PieceTypes.Nothing;
