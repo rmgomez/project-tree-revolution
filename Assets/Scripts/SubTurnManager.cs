@@ -134,6 +134,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 																	{
 																		frontTile.DestroyPiece();
 																	}
+																	
 																}
 															}
 
@@ -184,7 +185,15 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 															if (!frontLife.isAlive)
 															{
-																frontTile.DestroyPiece();
+																if (!frontLife.KeepLastVisual)
+																{
+																	frontTile.DestroyPiece();
+																}
+																else
+																{
+																	frontTile.RemovePiece();
+																	frontTile.canPlantOnIt = false;
+																}
 															}
 															else
 															{
