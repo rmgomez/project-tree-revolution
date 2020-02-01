@@ -92,7 +92,15 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 										//Debug.Log("frontPiece [" + (x + 1) + "][" + y + "]" + frontPiece);
 
-										CanWalkOnIt canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
+										// CanWalkOnIt canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
+
+										CanWalkOnIt canWalkOnIt = null;
+
+										if (frontPiece != null) {
+											canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
+										} else {
+											canWalkOnIt = null;
+										}
 
 										if (frontPiece == null || canWalkOnIt != null)
 										{
@@ -213,6 +221,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 										{
 											needRepass = true;
 										}
+									
 									}
 								}
 							}
