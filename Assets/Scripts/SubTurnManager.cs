@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SubTurnManager : Singleton<SubTurnManager>
 {
+	public bool isUpdating = false;
+
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -15,7 +17,11 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 	public void StartSubTurn()
 	{
-		StartCoroutine(SubLoop());
+		if (!isUpdating)
+		{
+			isUpdating = true;
+			StartCoroutine(SubLoop());
+		}	
 	}
 
 	public IEnumerator SubLoop()
@@ -203,6 +209,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 			yield return new WaitForSeconds(0.2f);
 		}
 
+		isUpdating = false;
 		Debug.Log("End Sub Turn");
 	}
 }

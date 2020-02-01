@@ -22,7 +22,9 @@ public enum VisualTileInfos
 {
 	Hide,
 	Valid,
-	Invalid
+	Invalid,
+	Selected,
+	Over
 }
 
 public enum PlayerActions
