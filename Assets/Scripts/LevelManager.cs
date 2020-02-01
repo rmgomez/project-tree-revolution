@@ -26,6 +26,8 @@ public class LevelManager : Singleton<LevelManager>
     public bool WatingForGrid;
     public int CurrentTurn { get; private set; }
     private bool _isPlaying;
+
+    public AudioClip sonido_ganar_vida;
     
 
     #region EVENTS
@@ -109,6 +111,27 @@ public class LevelManager : Singleton<LevelManager>
             enemy.ExecuteAction();
             yield return new WaitForSeconds(1f);
         }*/
+
+
+        // Añadimos puntos de naturaleza en base a aquellos elementos de la escena que tengan esta capacidad
+        // List<GameObject> lista_a_añadir = new List<GameObject>();
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Plant"))
+        {
+            if (item.GetComponent<Add_nature_points_end_of_round>() != null)
+            {
+                if (sonido_ganar_vida != null && gameObject.GetComponent<AudioSource>() != null)
+                {
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(sonido_ganar_vida);
+                }
+                CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
+
+                // lista_a_añadir.Add(item);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        
+
         
         OnEnemyTurnCompleted?.Invoke();
         Debug.Log("[ENEMY TURN] COMPLETED");

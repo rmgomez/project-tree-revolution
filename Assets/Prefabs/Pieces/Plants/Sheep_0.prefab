@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8213225947600901017}
   - component: {fileID: 7866836283725702157}
   - component: {fileID: 7867457764639012599}
-  - component: {fileID: 438214173573342163}
+  - component: {fileID: 114349235695892842}
   m_Layer: 0
   m_Name: Sheep_0
   m_TagString: Plant
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 10
---- !u!114 &438214173573342163
+--- !u!114 &114349235695892842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,13 +99,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4330788548991975521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881213e7210a2b34dacd8363ed5bf402, type: 3}
+  m_Script: {fileID: 11500000, guid: 49713643660fec646a9e7f0eee252884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  to_add: 1
 --- !u!1001 &2338017182353927259
 PrefabInstance:
   m_ObjectHideFlags: 0

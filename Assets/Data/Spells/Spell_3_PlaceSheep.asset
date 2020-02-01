@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c000ca905da460e9dc49ad9526ea1d, type: 3}
   m_Name: Spell_3_PlaceSheep
   m_EditorClassIdentifier: 
-  SpellID: 1
+  SpellID: 3
   SpellName: SHEEP
   NaturePoints: 5
   ButtonIcon: {fileID: 21300000, guid: 1a6aa79bd9c48a6418ce812b1719288c, type: 3}

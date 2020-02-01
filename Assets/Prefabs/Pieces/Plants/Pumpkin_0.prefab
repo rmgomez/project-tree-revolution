@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8213225947600901017}
   - component: {fileID: 7866836283725702157}
   - component: {fileID: 7867457764639012599}
-  - component: {fileID: 438214173573342163}
+  - component: {fileID: 114110666951866822}
   m_Layer: 0
   m_Name: Pumpkin_0
   m_TagString: Plant
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2015369d7a952bf4fa4e3443e316a5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackForce: 1
+  attackForce: 0
 --- !u!114 &7867457764639012599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 10
---- !u!114 &438214173573342163
+--- !u!114 &114110666951866822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,13 +99,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4330788548991975521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881213e7210a2b34dacd8363ed5bf402, type: 3}
+  m_Script: {fileID: 11500000, guid: 67c8aed1dfc57494e9263cc025982ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &6419240272892085361
 PrefabInstance:
   m_ObjectHideFlags: 0

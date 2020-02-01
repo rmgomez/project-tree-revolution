@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c000ca905da460e9dc49ad9526ea1d, type: 3}
   m_Name: Spell_7_InvokeStorm
   m_EditorClassIdentifier: 
-  SpellID: 1
+  SpellID: 7
   SpellName: STORM
   NaturePoints: 15
   ButtonIcon: {fileID: 21300000, guid: 56c32b44472b2974b9ca79f19b40e836, type: 3}

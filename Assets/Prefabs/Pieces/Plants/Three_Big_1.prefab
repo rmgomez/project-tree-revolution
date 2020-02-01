@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3028318439562832882}
   - component: {fileID: 3027810241162377480}
   - component: {fileID: 4701471038877658156}
+  - component: {fileID: 114359271219441744}
   m_Layer: 0
   m_Name: Three_Big_1
   m_TagString: Plant
@@ -108,6 +109,19 @@ MonoBehaviour:
   - {fileID: 3324604651065354675}
   - {fileID: 3451156908862056259}
   - {fileID: 9193015063443087310}
+--- !u!114 &114359271219441744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876646840800939934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49713643660fec646a9e7f0eee252884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  to_add: 2
 --- !u!1001 &3324604651065388819
 PrefabInstance:
   m_ObjectHideFlags: 0
