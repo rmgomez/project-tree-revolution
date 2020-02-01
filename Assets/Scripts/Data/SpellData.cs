@@ -10,5 +10,8 @@ public class SpellData : ScriptableObject
     public int NaturePoints;
     public Sprite ButtonIcon;
     public PieceTypes PieceToSpawn;
-    public bool HealTile;
+    public int HealAmount;
+    public int AttackAmount;
+    public PlayerActions Action;
+
 }

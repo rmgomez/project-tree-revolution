@@ -95,9 +95,11 @@ public class LevelManager : Singleton<LevelManager>
         Debug.Log("[ENEMY TURN] STARTED");
 
         OnEnemyTurnStarted?.Invoke();
+
+
+        yield return StartCoroutine(SubTurnManager.Instance.SubLoop());
         
-        
-        yield return new WaitForSeconds(2f);
+       // yield return new WaitForSeconds(2f);
         
         //yield return new WaitWhile(() => WaitingForGrid);
         
@@ -143,6 +145,11 @@ public class LevelManager : Singleton<LevelManager>
 
     }
 
+    public SpellData GetActiveSpellData()
+    {
+        return GetSpellData(SelectedSpellID);
+    }
+    
     public SpellData GetSpellData(int spellID)
     {
        var temp =  LevelSpells.Find((data => data.SpellID == spellID));

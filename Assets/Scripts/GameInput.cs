@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
@@ -42,7 +43,29 @@ public class GameInput : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, 200, _tileMask))
         {
-            Debug.Log($"Hit {hit.collider.gameObject.name}");
+            Tile tile = hit.collider.gameObject.GetComponent<Tile>();
+
+            var data = LevelManager.Instance.GetActiveSpellData();
+            Debug.Log($"Hit {tile.gameObject.name}");
+            if (tile.TestIfCanDoAction(data.Action))
+            {
+                switch (data.Action)
+                {
+                    case PlayerActions.Place:
+                        tile.DoActionPlace(data.PieceToSpawn);
+                        break;
+                    case PlayerActions.Heal:
+                        tile.DoActionHeal(data.HealAmount);
+                        break;
+                    case PlayerActions.Attack:
+                        tile.DoActionAttack(data.AttackAmount);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            
+           
         }
 
     }
