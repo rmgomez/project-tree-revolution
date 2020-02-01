@@ -43,5 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b3cfd9a46934a28a018754a9f1dbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  TotalTurns: 0
+  LevelSpells:
+  - {fileID: 11400000, guid: fa65b1e53405f43e2b4b88ce13c11c31, type: 2}
+  - {fileID: 11400000, guid: fa65b1e53405f43e2b4b88ce13c11c31, type: 2}
+  - {fileID: 11400000, guid: fa65b1e53405f43e2b4b88ce13c11c31, type: 2}
+  InitialNaturePoints: 10
+  SelectedSpellID: 0
+  CurrentNaturePoints: 0
   CurrentState: 0
   WatingForPlayer: 0
+  WatingForGrid: 0

@@ -5,46 +5,52 @@ using System.ComponentModel.Design.Serialization;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
-    public static LevelManager Instance;
 
+    
+    [Header("Level Config: ")]
+    
+    public int TotalTurns;
+    public List<SpellData> LevelSpells;
+    public int InitialNaturePoints;
+
+    
+    [Header("Debug state:")] 
+    
+    public int SelectedSpellID;
+    public int CurrentNaturePoints;
     public LevelState CurrentState;
-
-    private bool _isPlaying;
-
-
-    private List<EnemyController> _activeEnemies;
-    public List<EnemyController> ActiveEnemies
-    {
-        get => _activeEnemies;
-        private set => _activeEnemies = value;
-    } 
-
-
-    public Action OnLevelStart;
-    public Action OnLevelEnd;
-    
-    public Action OnEnemyTurnStarted;
-    public Action OnEnemyTurnCompleted;
-    
-    public Action OnPlayerTurnStarted;
-    public Action OnPlayerTurnCompleted;
-
-
     public bool WatingForPlayer;
-    // Start is called before the first frame update
-    void Awake()
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
+    public bool WatingForGrid;
+    public int CurrentTurn { get; private set; }
+    private bool _isPlaying;
+    
 
-
+    #region EVENTS
+    public static event Action OnLevelStart;
+    public static event Action OnLevelEnd;
+    
+    public static event Action OnEnemyTurnStarted;
+    public static event Action OnEnemyTurnCompleted;
+    
+    public static event Action OnPlayerTurnStarted;
+    public static event Action OnPlayerTurnCompleted;
+    #endregion
+    
     private void Start()
     {
+        Init();
+        
         StartCoroutine(LevelUpdate());
         OnLevelStart?.Invoke();
+    }
+
+    public void Init()
+    {
+        _isPlaying = true;
+        CurrentState = LevelState.PlayerTurn;
+        CurrentNaturePoints = InitialNaturePoints;
     }
 
     private IEnumerator LevelUpdate()
@@ -78,9 +84,8 @@ public class LevelManager : MonoBehaviour
 
     void ResetLevel()
     {
-        //RESET PLAYER STATE
-        
-        _activeEnemies.Clear();
+        //RESET LEVEL STATE
+        CurrentTurn = 0;
         WatingForPlayer = false;
         
     }
@@ -91,40 +96,61 @@ public class LevelManager : MonoBehaviour
 
         OnEnemyTurnStarted?.Invoke();
         
-        foreach (var enemy in _activeEnemies)
+        
+        yield return new WaitForSeconds(2f);
+        
+        //yield return new WaitWhile(() => WaitingForGrid);
+        
+        /*foreach (var enemy in _activeEnemies)
         {
             enemy.ExecuteAction();
             yield return new WaitForSeconds(1f);
-        }
+        }*/
         
         OnEnemyTurnCompleted?.Invoke();
         Debug.Log("[ENEMY TURN] COMPLETED");
+        CurrentTurn++;
+        
+        CurrentState = IsLevelCompleted() ? LevelState.LevelEnd : LevelState.PlayerTurn;
+        
         yield return new WaitForSeconds(2f);
 
     }
     
     private IEnumerator PlayerTurn()
     {
+        WatingForPlayer = true;
+        
         Debug.Log("[PLAYER TURN] STARTED");
+        
         OnPlayerTurnStarted?.Invoke();
         
         yield return new WaitWhile(() => WatingForPlayer);
         
         OnPlayerTurnCompleted?.Invoke();
         
+        CurrentState = LevelState.EnemyTurn;
+        
         Debug.Log("[PLAYER TURN] ENDED");
         yield return null;
     }
 
-
-    public void SuscribeEnemy(EnemyController enemyController)
+    public bool IsLevelCompleted()
     {
-        _activeEnemies.Add(enemyController);
+        
+        //LOGIC FOR TURN BASED
+        return CurrentTurn >= TotalTurns;
+
     }
 
-    public void UnsuscribeEnemy(EnemyController enemyController)
+    public SpellData GetSpellData(int spellID)
     {
-        _activeEnemies.Remove(enemyController);
+       var temp =  LevelSpells.Find((data => data.SpellID == spellID));
+
+       if (temp == null) Debug.LogError($"No Spell Found with ID: {spellID}");
+       
+       return temp;
+
     }
 
 }
