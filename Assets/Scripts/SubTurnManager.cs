@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SubTurnManager : Singleton<SubTurnManager>
 {
+	[HideInInspector]
 	public bool isUpdating = false;
 
 	private void Update()
@@ -21,7 +22,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 			isUpdating = true;
 			Debug.Log("Start Sub Turn");
 			StartCoroutine(SubLoop());
-		}	
+		}
 	}
 
 	public IEnumerator SubLoop()
@@ -91,10 +92,19 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 										//Debug.Log("frontPiece [" + (x + 1) + "][" + y + "]" + frontPiece);
 
-										if (frontPiece == null)
+										// CanWalkOnIt canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
+
+										CanWalkOnIt canWalkOnIt = null;
+
+										if (frontPiece != null) {
+											canWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
+										} else {
+											canWalkOnIt = null;
+										}
+
+										if (frontPiece == null || canWalkOnIt != null)
 										{
 											//move
-
 											var move = actualGO.GetComponent<MovementComponent>();
 
 											if (move != null)
@@ -103,6 +113,46 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 												frontTile.ChangePiece(tile.piece, tile.pieceType);
 												tile.RemovePiece();
+
+												if (canWalkOnIt)
+												{
+													canWalkOnIt.OnWalkOnIt();
+
+													switch (canWalkOnIt.walkReaction)
+													{
+														case WalkReaction.Explosion:
+
+															var frontAttack = frontPiece.GetComponent<AttackComponent>();
+
+															if (frontAttack)
+															{
+																var life = frontTile.piece.GetComponent<LifeComponent>();
+																if (life)
+																{
+																	yield return life.GetDamage(frontAttack.damages);
+
+																	if (!life.isAlive)
+																	{
+																		frontTile.DestroyPiece();
+																	}
+																}
+															}
+
+															var frontLife = frontPiece.GetComponent<LifeComponent>();
+
+															yield return frontLife?.Death();
+
+															if (!frontLife.isAlive)
+															{
+																Destroy(frontPiece);
+															}
+
+															frontTile.CreateGround(GroundTypes.Explosed);
+															frontTile.canPlantOnIt = false;
+															break;
+													}
+												}
+
 											}
 
 											actionPoint.actualActionPoints--;
@@ -132,17 +182,10 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 														if (frontLife != null)
 														{
-															frontLife.GetDamage(attack.attackForce);
+															yield return frontLife.GetDamage(attack.damages);
 
 															if (!frontLife.isAlive)
 															{
-																var frontDeathReaction = frontPiece.GetComponent<DeathReaction>();
-
-																if (frontDeathReaction != null)
-																{
-																	yield return frontDeathReaction.Action();
-																}
-
 																frontTile.DestroyPiece();
 															}
 															else
@@ -157,17 +200,10 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 																	if (life != null)
 																	{
-																		life.GetDamage(attackReaction.attackForce);
+																		yield return life.GetDamage(attackReaction.attackForce);
 
 																		if (!life.isAlive)
 																		{
-																			var deathReaction = actualGO.GetComponent<DeathReaction>();
-
-																			if (deathReaction != null)
-																			{
-																				yield return deathReaction.Action();
-																			}
-
 																			tile.DestroyPiece();
 																		}
 																	}
@@ -185,6 +221,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 										{
 											needRepass = true;
 										}
+									
 									}
 								}
 							}

@@ -24,8 +24,6 @@ public class GridManager : Singleton<GridManager>
 	public int defaultY = 0;
 	public Tile tilePrefab;
 	public PrefabListScriptableObject prefabList;
-	//public Ground[] groundPrefabs;
-	//public Piece[] piecePrefabs;
 	public TileLine[] tileLines;
 
 	// Aesthetic elements
@@ -138,7 +136,7 @@ public class GridManager : Singleton<GridManager>
 				{
 					for (int z = 0; z < gridSize.y; z++)
 					{
-						if (tileLines[x].tiles[z].piece == null)
+						if (tileLines[x].tiles[z].piece == null && tileLines[x].tiles[z].canPlantOnIt)
 						{
 							tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid, false);
 						}
@@ -182,15 +180,15 @@ public class GridManager : Singleton<GridManager>
 
 		if (prefab_esquina_mapa != null)
 		{
-			for (int i = 0; i < gridSize.x; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(i,  0, 0)          - offset, Quaternion.identity); }
-			for (int i = 0; i < gridSize.x; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(i,  0, gridSize.y+1) - offset, Quaternion.identity); }
-			for (int i = 0; i < gridSize.y; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, i+1)          - offset, Quaternion.identity); }
-			for (int i = 0; i < gridSize.y; i++) { GameObject.Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, i+1) - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.x; i++) { Instantiate(prefab_esquina_mapa, new Vector3(i,  0, 0)          - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.x; i++) { Instantiate(prefab_esquina_mapa, new Vector3(i,  0, gridSize.y+1) - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.y; i++) { Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, i+1)          - offset, Quaternion.identity); }
+			for (int i = 0; i < gridSize.y; i++) { Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, i+1) - offset, Quaternion.identity); }
 
-			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, 0) - offset, Quaternion.identity);
-			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, gridSize.y+1) - offset, Quaternion.identity);
-			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, 0) - offset, Quaternion.identity);
-			GameObject.Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, gridSize.y+1) - offset, Quaternion.identity);
+			Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, 0) - offset, Quaternion.identity);
+			Instantiate(prefab_esquina_mapa, new Vector3(-1, 0, gridSize.y+1) - offset, Quaternion.identity);
+			Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, 0) - offset, Quaternion.identity);
+			Instantiate(prefab_esquina_mapa, new Vector3(gridSize.x, 0, gridSize.y+1) - offset, Quaternion.identity);
 		}
 	}
 

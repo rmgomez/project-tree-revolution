@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackComponent : MonoBehaviour
 {
     [Range(0, 10)]
-    public int attackForce = 1;
+    public int damages = 1;
 
     private float animationDuration = 0.1f;
 

@@ -58,7 +58,7 @@ public class LifeComponent : MonoBehaviour
         EventLifeChange?.Invoke();
     }
 
-    public void GetDamage(int damage)
+    public IEnumerator GetDamage(int damage)
     {
         if(IsObjective && isAlive) LevelManager.Instance.CurrentObjectiveLife -= damage;
         actualQuantity = damage > actualQuantity ? 0 : actualQuantity - damage;
@@ -68,13 +68,17 @@ public class LifeComponent : MonoBehaviour
 
         if (actualQuantity == 0)
         {
-            Death();
+           return Death();
         }
+
+        return null;
     }
 
-    public void Death()
+    public IEnumerator Death()
     {
         isAlive = false;
+
+       return  GetComponent<DeathReaction>()?.Action();
     }
 
     void OnLevelStart()

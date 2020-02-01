@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 //using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -30,6 +31,7 @@ public class LevelManager : Singleton<LevelManager>
     private bool _isPlaying;
 
     public AudioClip sonido_ganar_vida;
+    public GameObject particula_vida_extra;
     
 
     #region EVENTS
@@ -123,14 +125,24 @@ public class LevelManager : Singleton<LevelManager>
         {
             if (item.GetComponent<Add_nature_points_end_of_round>() != null)
             {
+
+                if (particula_vida_extra != null) {
+                    GameObject created_particle = GameObject.Instantiate(particula_vida_extra, item.transform.position, Quaternion.identity);
+                    created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
+                }
+                
+                
+                yield return new WaitForSeconds(0.5f);
+
                 if (sonido_ganar_vida != null && gameObject.GetComponent<AudioSource>() != null)
                 {
                     gameObject.GetComponent<AudioSource>().PlayOneShot(sonido_ganar_vida);
                 }
+
                 CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
 
                 // lista_a_añadir.Add(item);
-                yield return new WaitForSeconds(0.5f);
+                // yield return new WaitForSeconds(0.5f);
             }
         }
 
