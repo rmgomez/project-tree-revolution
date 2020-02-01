@@ -53,13 +53,12 @@ public class LevelManager : MonoBehaviour
         {
             switch (CurrentState)
             {
-                case LevelState.Idle:
-                    Debug.Log("Idle State");
-                    break;
-                case LevelState.EnemyTurn: yield return StartCoroutine(EnemyTurn());
-                    break;
-                case LevelState.PlayerTurn:yield return StartCoroutine(PlayerTurn());
-                    break;
+                case LevelState.Idle: Debug.Log("Idle State"); break;
+                
+                case LevelState.EnemyTurn: yield return StartCoroutine(EnemyTurn()); break;
+                
+                case LevelState.PlayerTurn:yield return StartCoroutine(PlayerTurn()); break;
+                
                 case LevelState.LevelEnd:
                     Debug.Log("Level Completed, go to endScreen");
                     OnLevelEnd?.Invoke();
