@@ -93,6 +93,39 @@ public class Tile : MonoBehaviour
 #endif
 	}
 
+	public bool TestIfCanDoAction(PlayerActions playerAction)
+	{
+		switch (playerAction)
+		{
+			case PlayerActions.Place:
+				if (piece == null)
+				{
+					return true;
+				}
+				break;
+
+			case PlayerActions.Heal:
+
+				break;
+
+			case PlayerActions.Attack:
+
+				break;
+		}
+
+		return false;
+	}
+
+	private void OnMouseEnter()
+	{
+		visualTileInfo.ChangeColor(VisualTileInfos.Over);
+	}
+
+	private void OnMouseExit()
+	{
+		visualTileInfo.ChangeColor(VisualTileInfos.Hide);
+	}
+
 #if UNITY_EDITOR
 
 	//[Header("DEBUG")]

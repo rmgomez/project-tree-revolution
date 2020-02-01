@@ -174,9 +174,15 @@ public class GridManager : Singleton<GridManager>
 
 			for (int z = 0; z < gridSize.y; z++)
 			{
-				tileLines[x].tiles[z] = Instantiate(tilePrefab, new Vector3Int(x, defaultY, z), tilePrefab.transform.rotation, transform);
+				tileLines[x].tiles[z] = Instantiate(tilePrefab, new Vector3Int(x, defaultY, z), Quaternion.identity, transform);
 				tileLines[x].tiles[z].name = $"Tile[{x}][{z}]";
 			}
+		}
+
+		if (Camera.main)
+		{
+			Camera.main.transform.position = new Vector3(gridSize.x/2, 10, gridSize.y/2);
+			Camera.main.transform.eulerAngles = new Vector3(90, 0, 0);
 		}
 	}
 

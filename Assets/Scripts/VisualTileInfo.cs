@@ -6,6 +6,8 @@ public class VisualTileInfo : MonoBehaviour
 {
 	public Material materialValid;
 	public Material materialInvalid;
+	public Material materialSelect;
+	public Material materialOver;
 
 	private MeshRenderer meshRenderer;
 
@@ -23,13 +25,20 @@ public class VisualTileInfo : MonoBehaviour
 				meshRenderer.enabled = false;
 				return;
 
-			case VisualTileInfos.Valid:
-				
+			case VisualTileInfos.Valid:			
 				meshRenderer.sharedMaterial = materialValid;
 				break;
 
 			case VisualTileInfos.Invalid:
 				meshRenderer.sharedMaterial = materialInvalid;
+				break;
+
+			case VisualTileInfos.Selected:
+				meshRenderer.sharedMaterial = materialSelect;
+				break;
+
+			case VisualTileInfos.Over:
+				meshRenderer.sharedMaterial = materialOver;
 				break;
 		}
 
