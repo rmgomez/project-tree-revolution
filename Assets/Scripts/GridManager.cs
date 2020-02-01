@@ -92,6 +92,16 @@ public class GridManager : Singleton<GridManager>
 		}
 	}*/
 
+	public void HideInteratableVisual()
+	{
+		for (int x = 0; x < gridSize.x; x++)
+		{
+			for (int z = 0; z < gridSize.y; z++)
+			{
+				tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide, false);
+			}
+		}
+	}
 
 	public void ShowInteratable(PlayerActions playerAction)
 	{
