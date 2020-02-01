@@ -206,7 +206,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 				actualPriority++;
 			}
 
-			yield return new WaitForSeconds(0.2f);
+			//yield return new WaitForSeconds(0.2f);
 		}
 
 		isUpdating = false;

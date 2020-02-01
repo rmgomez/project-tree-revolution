@@ -92,6 +92,16 @@ public class GridManager : Singleton<GridManager>
 		}
 	}*/
 
+	public void HideInteratableVisual()
+	{
+		for (int x = 0; x < gridSize.x; x++)
+		{
+			for (int z = 0; z < gridSize.y; z++)
+			{
+				tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide, false);
+			}
+		}
+	}
 
 	public void ShowInteratable(PlayerActions playerAction)
 	{
@@ -109,12 +119,12 @@ public class GridManager : Singleton<GridManager>
 
 							if (life != null && life.CanBeHeal)
 							{
-								tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid);
+								tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid, false);
 								continue;
 							}
 						}
 
-						tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide);
+						tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide, false);
 					}
 				}
 
@@ -127,11 +137,11 @@ public class GridManager : Singleton<GridManager>
 					{
 						if (tileLines[x].tiles[z].piece == null)
 						{
-							tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid);
+							tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid, false);
 						}
 						else
 						{
-							tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide);
+							tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide, false);
 						}
 					}
 				}
@@ -148,12 +158,12 @@ public class GridManager : Singleton<GridManager>
 
 							if (life != null)
 							{
-								tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid);
+								tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Valid, false);
 								continue;
 							}
 						}
 
-						tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide);
+						tileLines[x].tiles[z].visualTileInfo.ChangeColor(VisualTileInfos.Hide, false);
 					}
 				}
 				break;

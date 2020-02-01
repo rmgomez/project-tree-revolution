@@ -48,60 +48,7 @@ MonoBehaviour:
   defaultY: 0
   tilePrefab: {fileID: 1469398751391665703, guid: c3b2b09f970e7fe46a6ffb13406a1d53,
     type: 3}
-  groundPrefabs:
-  - {fileID: 114490994281256470, guid: f505534bd871b54449935a18f2367e77, type: 3}
-  - {fileID: 114490994281256470, guid: a89979e8352c8144e9927064a6eeb78e, type: 3}
-  - {fileID: 5778716322626028543, guid: e985b601e4490420f892831ba63be07e, type: 3}
-  - {fileID: 5217152313125865179, guid: 5d05b63f45d63462497d33d038dfd150, type: 3}
-  - {fileID: 8430594990426012801, guid: d8a9e657b9189475cacda220ae891374, type: 3}
-  - {fileID: 3365101148680069463, guid: 12743ab8c96484077a08630bc6d051ab, type: 3}
-  - {fileID: 3560596610330351088, guid: 3049796c90d31457eaf30ce970ff4da5, type: 3}
-  piecePrefabs:
-  - {fileID: 1070903957054470639, guid: 904b3fcaabf332a4ca9f91c3b38167ca, type: 3}
-  - {fileID: 1070903957054470639, guid: 365e83ffc0b3bb84086705542f8da9f8, type: 3}
-  - {fileID: 1070903957054470639, guid: e08b25ee4d94e9440b7d62af380adff6, type: 3}
-  - {fileID: 1070903957054470639, guid: e08b25ee4d94e9440b7d62af380adff6, type: 3}
-  - {fileID: 5070262720843107339, guid: 91133e1c41d9b45e1aa40e898e1b47ca, type: 3}
-  - {fileID: 6462031308071459270, guid: 5a2f8c5e8fce2431dad92c3d50af7e6f, type: 3}
-  tileLines:
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - tiles:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+  prefabList: {fileID: 0}
+  tileLines: []
   debugCreateTile: 0
+  debugPlaceCamera: 0

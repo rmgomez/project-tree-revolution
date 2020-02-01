@@ -98,7 +98,7 @@ public class Tile : MonoBehaviour
 		CreatePiece(pieceType);
 	}
 
-	public void DoActionHeal(PieceTypes pieceType, int healValue)
+	public void DoActionHeal( int healValue)
 	{
 		var life = piece?.GetComponent<LifeComponent>();
 
@@ -108,7 +108,7 @@ public class Tile : MonoBehaviour
 		}
 	}
 
-	public void DoActionAttack(PieceTypes pieceType, int attackValue)
+	public void DoActionAttack(int attackValue)
 	{
 		var life = piece?.GetComponent<LifeComponent>();
 
@@ -159,12 +159,12 @@ public class Tile : MonoBehaviour
 
 	private void OnMouseEnter()
 	{
-		visualTileInfo.ChangeColor(VisualTileInfos.Over);
+		visualTileInfo.ChangeColor(VisualTileInfos.Over, true);
 	}
 
 	private void OnMouseExit()
 	{
-		visualTileInfo.ChangeColor(VisualTileInfos.Hide);
+		visualTileInfo.ChangeColor(VisualTileInfos.Hide, true);
 	}
 
 #if UNITY_EDITOR

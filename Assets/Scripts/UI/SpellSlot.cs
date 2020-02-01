@@ -25,6 +25,10 @@ public class SpellSlot : MonoBehaviour
     public void SelectSpell()
     {
         Debug.Log($"Is Slot {gameObject.name} on: {ToggleButton.isOn}");
-        if (ToggleButton.isOn) LevelManager.Instance.SelectedSpellID = _data.SpellID;
+        if (ToggleButton.isOn)
+        {
+            GridManager.Instance.ShowInteratable(_data.Action);
+            LevelManager.Instance.SelectedSpellID = _data.SpellID;
+        }
     }
 }
