@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9c000ca905da460e9dc49ad9526ea1d, type: 3}
-  m_Name: Spell_5_Pumpkin 1
+  m_Name: Spell_5_honeycomb
   m_EditorClassIdentifier: 
   SpellID: 1
   SpellName: HONEYCOMB
   NaturePoints: 2
-  ButtonIcon: {fileID: 21300000, guid: 3a14fa0402206f84b8b6b7306f08abfb, type: 3}
+  ButtonIcon: {fileID: 21300000, guid: 9b7bff7f9f23ae54d81a00a5aacb71ba, type: 3}
   PieceToSpawn: 13
-  HealAmount: 1
-  AttackAmount: 3
+  HealAmount: 0
+  AttackAmount: 0
   Action: 0
