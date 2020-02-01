@@ -132,7 +132,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 															var frontLife = frontPiece.GetComponent<LifeComponent>();
 
-															yield return frontLife?.GetDamage(999);
+															yield return frontLife?.Death();
 
 															if (!frontLife.isAlive)
 															{
