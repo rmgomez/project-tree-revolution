@@ -218,9 +218,27 @@ public class GridManager : Singleton<GridManager>
 		}
 	}
 
+	private void UpdateGrid()
+	{
+		if (tileLines == null)
+		{
+			return;
+		}
+
+		for (int x = 0; x < gridSize.x; x++)
+		{
+			for (int z = 0; z < gridSize.y; z++)
+			{
+				Tile tile = tileLines[x].tiles[z];
+
+				tile.CreatePiece(tile.pieceType);
+				tile.CreateGround(tile.groundType);
+			}
+		}
+	}
+
 	private void DestroyGrid()
 	{
-
 		while (transform.childCount > 0)
 		{
 			DestroyImmediate(transform.GetChild(0).gameObject);
@@ -229,6 +247,7 @@ public class GridManager : Singleton<GridManager>
 
 	[Header("EDITOR")]
 	public bool debugCreateTile = false;
+	public bool updateMap = false;
 	public bool debugPlaceCamera = false;
 
 	private void OnDrawGizmosSelected()
@@ -238,6 +257,12 @@ public class GridManager : Singleton<GridManager>
 			debugCreateTile = false;
 
 			SpawnGrid();
+		}
+
+		if (updateMap)
+		{
+			updateMap = false;
+			UpdateGrid();
 		}
 
 		if (debugPlaceCamera)
