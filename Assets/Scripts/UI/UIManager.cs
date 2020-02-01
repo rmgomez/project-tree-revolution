@@ -38,6 +38,7 @@ public class UIManager : Singleton<UIManager>
         if (LevelManager.Instance.CurrentState != LevelState.LevelEnd)
         {
             NaturePointsText.text = LevelManager.Instance.CurrentNaturePoints.ToString("D2");
+            
         }
     }
 
@@ -52,10 +53,12 @@ public class UIManager : Singleton<UIManager>
         TurnCounterText.text = $"TURN: {LevelManager.Instance.CurrentTurn}";
         TurnText.text = "PLAYER TURN";
         PlayerUI.SetInteractable(true);
+        GridManager.Instance.ShowInteratable(LevelManager.Instance.GetActiveSpellData().Action);
     }
     void OnPlayerTurnCompleted()
     {
 
+        GridManager.Instance.HideInteratableVisual();
     }
     void OnEnemyTurnStarted()
     {
