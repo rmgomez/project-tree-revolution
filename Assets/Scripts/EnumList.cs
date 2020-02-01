@@ -4,9 +4,14 @@ using UnityEngine;
 
 public enum GroundTypes
 {
-	Void,
-	Green,
-	Brown
+	Void = 0,
+	Green = 1,
+	Brown = 2,
+	AmbientGrass0 = 3,
+	AmbientGrass1 = 4,
+	AmbientGrass2 = 5,
+	AmbientGrass3 = 6,
+	AmbientGrass4 = 7,
 }
 
 public enum PieceTypes
