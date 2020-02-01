@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd8545909f3b40acbd736a19ac7fd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxQuantity: 3
+  maxQuantity: 1
   actualQuantity: 0
   isAlive: 1
   KeepLastVisual: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2015369d7a952bf4fa4e3443e316a5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackForce: 1
+  attackForce: 0
 --- !u!114 &7867457764639012599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,6 @@ MonoBehaviour:
   soundPutOnGrid: {fileID: 8300000, guid: 3a500e57cf51c0348af7c4342ea99e30, type: 3}
   soundOnDeath: {fileID: 0}
   cuandoSeBorra: {fileID: 8300000, guid: 3a500e57cf51c0348af7c4342ea99e30, type: 3}
-  soundOnExplosion: {fileID: 0}
 --- !u!1001 &2338017182353927259
 PrefabInstance:
   m_ObjectHideFlags: 0

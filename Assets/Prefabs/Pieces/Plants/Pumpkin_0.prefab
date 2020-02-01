@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2015369d7a952bf4fa4e3443e316a5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackForce: 0
+  attackForce: 10
 --- !u!114 &7867457764639012599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkReaction: 0
+  object_to_replace: {fileID: 0}
 --- !u!1001 &6419240272892085361
 PrefabInstance:
   m_ObjectHideFlags: 0
