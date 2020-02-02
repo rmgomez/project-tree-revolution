@@ -53,11 +53,30 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 		int maxPriorityFind = 0;
 		int actualPriority = 0;
+		int actualPriorityChecker = 0;
+		int actualPriorityCounter = 0;
 		bool needRepass;
 
 		while (actualPriority <= maxPriorityFind)
 		{
 			needRepass = false;
+
+			//Anti infinity loop
+			if (actualPriority == actualPriorityChecker)
+			{
+				actualPriorityCounter++;
+
+				if (actualPriorityCounter > 10)
+				{
+					actualPriorityCounter = 0;
+					actualPriority++;
+					continue;
+				}
+			}
+			else
+			{
+				actualPriorityChecker = actualPriority;
+			}
 
 			for (int x = 0; x < gridManager.gridSize.x; x++)
 			{
@@ -172,8 +191,6 @@ public class SubTurnManager : Singleton<SubTurnManager>
 										//move on something
 										if (canWalkOnIt)
 										{
-											yield return canWalkOnIt.OnWalkOnIt();
-
 											switch (canWalkOnIt.walkReaction)
 											{
 												case WalkReaction.Explosion:
@@ -193,7 +210,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 														var life = frontTile.piece.GetComponent<LifeComponent>();
 														if (life)
 														{
-															yield return life.GetDamage(frontAttack.damages);
+															life.GetDamage(frontAttack.damages);
 
 															if (!life.isAlive)
 															{
@@ -204,7 +221,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 													var frontLife = frontPiece?.GetComponent<LifeComponent>();
 
-													yield return frontLife?.Death();
+													frontLife?.Death();
 
 													if (!frontLife.isAlive)
 													{
@@ -256,13 +273,13 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 												}
 
-												yield return attack.Action();
+												//yield return attack.Action();
 
 												var frontLife = frontPiece.GetComponent<LifeComponent>();
 
 												if (frontLife != null)
 												{
-													yield return frontLife.GetDamage(attack.damages);
+													frontLife.GetDamage(attack.damages);
 
 													if (!frontLife.isAlive)
 													{
