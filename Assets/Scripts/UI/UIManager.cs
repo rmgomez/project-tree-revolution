@@ -10,14 +10,14 @@ public class UIManager : Singleton<UIManager>
     public Text TurnCounterText;
     public Text TurnText;
     public Text NaturePointsText;
-    
-    
 
+    public EndLevelUI EndLevelUI;
     private void OnEnable()
     {
         LevelManager.OnEnemyTurnStarted += OnEnemyTurnStarted;
         LevelManager.OnEnemyTurnCompleted += OnEnemyTurnCompleted;
         LevelManager.OnLevelStart += OnLevelStart;
+        LevelManager.OnLevelEnd += OnLevelEnd;
         
         LevelManager.OnPlayerTurnStarted += OnPlayerTurnStarted;
         LevelManager.OnPlayerTurnCompleted += OnPlayerTurnCompleted;
@@ -28,6 +28,7 @@ public class UIManager : Singleton<UIManager>
         LevelManager.OnEnemyTurnStarted -= OnEnemyTurnStarted;
         LevelManager.OnEnemyTurnCompleted -= OnEnemyTurnCompleted;
         LevelManager.OnLevelStart -= OnLevelStart;
+        LevelManager.OnLevelEnd -= OnLevelEnd;
         
         LevelManager.OnPlayerTurnStarted -= OnPlayerTurnStarted;
         LevelManager.OnPlayerTurnCompleted -= OnPlayerTurnCompleted;
@@ -47,6 +48,11 @@ public class UIManager : Singleton<UIManager>
         PlayerUI.SpawnSpellSlots(LevelManager.Instance.LevelSpells);
     }
 
+    void OnLevelEnd()
+    {
+        EndLevelUI.Init(LevelManager.Instance.IsLevelCompleted());
+    }
+
 
     void OnPlayerTurnStarted()
     {
@@ -57,7 +63,6 @@ public class UIManager : Singleton<UIManager>
     }
     void OnPlayerTurnCompleted()
     {
-
         GridManager.Instance.HideInteratableVisual();
     }
     void OnEnemyTurnStarted()
