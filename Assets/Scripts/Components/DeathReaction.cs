@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathReaction : MonoBehaviour
 {
-    private float animationDuration = 0.5f;
+    public float animationDuration = 0;
 
     public IEnumerator Action()
     {

@@ -30,8 +30,8 @@ public enum PieceTypes
 	River2 = 16,
 
 	// Enemies
-	EnnemyOne		= 3,
-	EnnemyTwo		= 4,
+	Bulldozer = 3,
+	Car = 4,
 	Lumberjack		= 5,
 	Lumberjack_Hat	= 6,
 

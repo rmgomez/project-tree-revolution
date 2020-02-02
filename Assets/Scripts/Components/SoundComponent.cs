@@ -8,7 +8,7 @@ public class SoundComponent : MonoBehaviour
     private AudioClip soundPutOnGrid;
     public void PlayPlaceOnGrid()
     {
-        if (soundPutOnGrid)
+        if (soundPutOnGrid != null)
         {
             LevelManager.Instance.AudioSource.PlayOneShot(soundPutOnGrid);
         }
@@ -18,7 +18,7 @@ public class SoundComponent : MonoBehaviour
     private AudioClip soundOnDeath;
     public void PlayOnDeath()
     {
-        if (soundOnDeath)
+        if (soundOnDeath != null)
         {
             LevelManager.Instance.AudioSource.PlayOneShot(soundOnDeath);
         }
@@ -28,7 +28,7 @@ public class SoundComponent : MonoBehaviour
     private AudioClip cuandoSeBorra;
     public void PlayCuandoSeBorra()
     {
-        if (cuandoSeBorra)
+        if (cuandoSeBorra != null)
         {
             LevelManager.Instance.AudioSource.PlayOneShot(cuandoSeBorra);
         }

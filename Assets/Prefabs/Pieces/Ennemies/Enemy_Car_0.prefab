@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbad6629df9821498ac99182722d1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceType: 6
+  pieceType: 4
 --- !u!114 &5850474379416335808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55362771b70acae40b910725f18b8387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActionPoints: 1
+  maxActionPoints: 2
   actualActionPoints: 0
 --- !u!114 &3734513739057485130
 MonoBehaviour:
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e18ec7318df496684e828a26f9bbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackForce: 1
+  damages: 1
+  animationDuration: 0
 --- !u!114 &3615707893955679750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +106,8 @@ MonoBehaviour:
   maxQuantity: 1
   actualQuantity: 0
   isAlive: 1
+  KeepLastVisual: 0
+  IsObjective: 0
   DisplayLife: 1
   DisplayLifeObject: {fileID: 980459296244557425, guid: b8be32e4c0e0742999043e4e5cb14f25,
     type: 3}
