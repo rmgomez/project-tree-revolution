@@ -16,6 +16,8 @@ public class PlayerUI : MonoBehaviour
 
     public ToggleGroup ToggleGroup;
 
+    public AudioClip sonido_next_turn;
+
     
     //private int Selecte
 
@@ -42,6 +44,10 @@ public class PlayerUI : MonoBehaviour
 
     public void CompleteTurn()
     {
+        if (GameObject.Find("LevelManager") != null && GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && sonido_next_turn)
+        {
+            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(sonido_next_turn);
+        }
         LevelManager.Instance.WatingForPlayer = false;
         SetInteractable(false);
     }

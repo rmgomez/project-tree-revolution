@@ -6,6 +6,7 @@ public class GameInput : MonoBehaviour
 
     [SerializeField] private LayerMask _tileMask;
     private Camera _camera;
+    public AudioClip place_item;
 
     private bool _allowInput;
     
@@ -52,6 +53,11 @@ public class GameInput : MonoBehaviour
                 switch (data.Action)
                 {
                     case PlayerActions.Place:
+                        if (GameObject.Find("LevelManager") != null && GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && place_item != null)
+                        {
+                            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(place_item);
+                        }
+
                         tile.DoActionPlace(data.PieceToSpawn);
                         break;
                     case PlayerActions.Heal:

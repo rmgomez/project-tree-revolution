@@ -8,12 +8,19 @@ public class MovementComponent : MonoBehaviour
    //private int distanceByTurn = 1;
 
     private float moveDuration = 0.5f;
+    public AudioClip to_play_if_movement;
 
     [HideInInspector]
     public Vector2Int CurrentTile;
 
     public IEnumerator Action()
     {
+
+        if (GameObject.Find("LevelManager") != null && GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && to_play_if_movement != null)
+        {
+            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(to_play_if_movement);
+        }
+
         Vector3 prePos = transform.position;
         Vector3 nextPos = prePos + Vector3.right;
 
