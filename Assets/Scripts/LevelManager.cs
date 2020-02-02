@@ -30,6 +30,10 @@ public class LevelManager : Singleton<LevelManager>
     public int CurrentTurn;
     private bool _isPlaying;
 
+    public AudioSource DefaultSoundtrack;
+    public AudioSource BadSoundtrack;
+    
+
     public AudioClip sonido_ganar_vida;
     public GameObject particula_vida_extra;
 
@@ -110,6 +114,11 @@ public class LevelManager : Singleton<LevelManager>
         OnEnemyTurnStarted?.Invoke();
         
         yield return StartCoroutine(SubTurnManager.Instance.SubLoop());
+
+        if (GetDestroyProgress() <= 0.5 && DefaultSoundtrack.volume > 0.1)
+        {
+            StartCoroutine(CrossFadeSoundTrack());
+        } 
         
         if (IsLevelCompleted() || IsLevelFailed())
         {
@@ -215,6 +224,22 @@ public class LevelManager : Singleton<LevelManager>
         return ((((CurrentTurn - 1) * 100f) / (TotalTurns )) / 100f) ;
     }
 
+    public float GetDestroyProgress()
+    {
+        return (((CurrentObjectiveLife * 100f) / (TotalObjectiveLife )) / 100f) ;
+    }
+
+    public IEnumerator CrossFadeSoundTrack()
+    {
+        var duration = new Duration(6f);
+        
+        while (!duration.IsDone)
+        {
+            DefaultSoundtrack.volume -= duration.Progress01 * Time.deltaTime;
+            BadSoundtrack.volume += duration.Progress01 * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }
 
 
