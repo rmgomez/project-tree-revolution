@@ -27,7 +27,7 @@ public class LevelManager : Singleton<LevelManager>
     public LevelState CurrentState;
     public bool WatingForPlayer;
     public bool WatingForGrid;
-    public int CurrentTurn { get; private set; }
+    public int CurrentTurn;
     private bool _isPlaying;
 
     public AudioClip sonido_ganar_vida;
@@ -56,6 +56,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void Init()
     {
+        ResetLevel();
         AudioSource = GetComponent<AudioSource>();
         _isPlaying = true;
         CurrentState = LevelState.PlayerTurn;
@@ -95,7 +96,7 @@ public class LevelManager : Singleton<LevelManager>
     void ResetLevel()
     {
         //RESET LEVEL STATE
-        CurrentTurn = 0;
+        CurrentTurn = 1;
         WatingForPlayer = false;
         CurrentObjectiveLife = 0;
         TotalObjectiveLife = 0;
@@ -180,7 +181,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         
         //LOGIC FOR TURN BASED
-        return CurrentTurn >= TotalTurns;
+        return CurrentTurn >= TotalTurns ;
 
     }
 
@@ -207,6 +208,11 @@ public class LevelManager : Singleton<LevelManager>
        
        return temp;
 
+    }
+
+    public float GetLevelProgress()
+    {
+        return ((((CurrentTurn - 1) * 100f) / (TotalTurns )) / 100f) ;
     }
 
 }

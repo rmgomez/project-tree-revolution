@@ -11,7 +11,11 @@ public class UIManager : Singleton<UIManager>
     public Text TurnText;
     public Text NaturePointsText;
 
+    
     public EndLevelUI EndLevelUI;
+    
+    public ProgressBar ProgressBar;
+    
     private void OnEnable()
     {
         LevelManager.OnEnemyTurnStarted += OnEnemyTurnStarted;
@@ -45,11 +49,13 @@ public class UIManager : Singleton<UIManager>
 
     void OnLevelStart()
     {
+        ProgressBar.SetValue01(0f, true, 0.5f);
         PlayerUI.SpawnSpellSlots(LevelManager.Instance.LevelSpells);
     }
 
     void OnLevelEnd()
     {
+        ProgressBar.SetValue01(1f, true, 0.5f);
         EndLevelUI.Init(LevelManager.Instance.IsLevelCompleted());
     }
 
@@ -71,7 +77,9 @@ public class UIManager : Singleton<UIManager>
     }
     void OnEnemyTurnCompleted()
     {
-        
+        Debug.Log(LevelManager.Instance.GetLevelProgress());
+        //var percent = LevelManager.Instance.GetLevelProgress();
+        ProgressBar.SetValue01(LevelManager.Instance.GetLevelProgress(), true, 0.5f);
     }
     
 }

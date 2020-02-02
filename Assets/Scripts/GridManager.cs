@@ -22,7 +22,9 @@ public class GridManager : Singleton<GridManager>
 	private const string TagEnemy = "Enemy";
 	public Vector2Int gridSize = new Vector2Int(5, 5);
 	public int defaultY = 0;
-	public Tile tilePrefab;
+	public Tile tilePrefab_a;
+	// public Tile tilePrefab_b;
+	public Material alternative_tile_material;
 	public PrefabListScriptableObject prefabList;
 	public TileLine[] tileLines;
 
@@ -212,8 +214,15 @@ public class GridManager : Singleton<GridManager>
 
 			for (int z = 0; z < gridSize.y; z++)
 			{
-				tileLines[x].tiles[z] = Instantiate(tilePrefab, new Vector3Int(x, defaultY, z), Quaternion.identity, transform);
+				tileLines[x].tiles[z] = Instantiate(tilePrefab_a, new Vector3Int(x, defaultY, z), Quaternion.identity, transform);
 				tileLines[x].tiles[z].name = $"Tile[{x}][{z}]";
+
+				if ((x + z) % 2 == 0) {
+					tileLines[x].tiles[z].name = tileLines[x].tiles[z].name + "_b";
+					// Debug.Log(tileLines[x].tiles[z].gameObject.transform.GetChild(1).name);
+					// tileLines[x].tiles[z].transform.GetChild(0).GetComponent<Renderer>().material = alternative_tile_material;
+				}
+
 			}
 		}
 	}
