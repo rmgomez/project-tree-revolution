@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,6 +30,8 @@ public class LoadingManager : Singleton<LoadingManager>
 	private int nextSceneNumber = -1;
 	private string nextSceneName = null;
 
+	public List<string> SceneOrderList;
+
 	protected override void OnAwake()
 	{
 		enabled = false;
@@ -39,6 +42,19 @@ public class LoadingManager : Singleton<LoadingManager>
 		{
 			canvasGroup.alpha = 0;
 		}
+	}
+
+	public string GetCurrentScene()
+	{
+
+		return SceneManager.GetActiveScene().name;
+	}
+
+	public void NextScene()
+	{
+		var nextScene = SceneOrderList.IndexOf(GetCurrentScene()) + 1;
+
+		Load(nextScene >= SceneOrderList.Count - 1 ? SceneOrderList[0] : SceneOrderList[nextScene]);
 	}
 
 	public void ReloadActualScene()
