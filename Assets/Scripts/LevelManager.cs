@@ -219,7 +219,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         
         //LOGIC FOR TURN BASED
-        return CurrentTurn >= TotalTurns ;
+        return CurrentTurn >= TotalTurns && !IsLevelFailed() ;
 
     }
 
