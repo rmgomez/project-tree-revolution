@@ -174,7 +174,7 @@ public class LevelManager : Singleton<LevelManager>
 
 
                 if (item.GetComponent<LifeComponent>() != null) {
-                    if (item.GetComponent<LifeComponent>().actualQuantity < item.GetComponent<LifeComponent>().maxQuantity)
+                    if (item.GetComponent<LifeComponent>().actualQuantity == item.GetComponent<LifeComponent>().maxQuantity)
                     {
 
                         // Creamos la partícula de vida
