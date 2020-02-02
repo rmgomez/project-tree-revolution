@@ -15,6 +15,8 @@ public class PlayerUI : MonoBehaviour
     public Transform SpellSlotRoot;
 
     public ToggleGroup ToggleGroup;
+
+    
     //private int Selecte
 
 
