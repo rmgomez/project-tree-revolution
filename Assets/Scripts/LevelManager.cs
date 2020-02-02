@@ -65,6 +65,7 @@ public class LevelManager : Singleton<LevelManager>
         _isPlaying = true;
         CurrentState = LevelState.PlayerTurn;
         CurrentNaturePoints = InitialNaturePoints;
+        SelectedSpellID = LevelSpells[0].SpellID;
     }
 
     private IEnumerator LevelUpdate()
