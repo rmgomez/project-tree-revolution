@@ -68,6 +68,7 @@ public class Tile : MonoBehaviour
 	public void ChangePiece(Piece newPiece, PieceTypes newPieceTypes)
 	{
 		piece = newPiece;
+		piece.transform.parent = transform;
 		pieceType = newPieceTypes;
 
 #if UNITY_EDITOR

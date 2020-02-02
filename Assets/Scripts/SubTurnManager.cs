@@ -74,17 +74,12 @@ public class SubTurnManager : Singleton<SubTurnManager>
 						{
 							if (priorityComponent.priority == actualPriority)
 							{
-
 								var actionPoint = actualPiece.GetComponent<ActionPointComponent>();
-
-								//var attack = go.GetComponent<AttackComponent>();
-								//var life = go.GetComponent<LifeComponent>();
 
 								//Check if can do action
 								if (actionPoint && actionPoint.actualActionPoints > 0)
 								{
 									//Check what is in front
-
 									if (x + 1 < gridManager.gridSize.x)
 									{
 										var frontTile = gridManager.tileLines[x + 1].tiles[y];
@@ -99,16 +94,60 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 										if (frontPiece == null || canWalkOnIt != null)
 										{
-											//move
 											var move = actualPiece.GetComponent<MovementComponent>();
 
 											if (move != null)
 											{
+												//move
 												yield return move.Action();
 
 												frontTile.ChangePiece(tile.piece, tile.pieceType);
 												tile.RemovePiece();
 
+												//Check the side
+
+												if (y > 0)
+												{
+													Tile leftTile = gridManager.tileLines[x + 1].tiles[y - 1];
+
+													if (leftTile.piece && leftTile.piece.GetComponent<CanAttackAround>() != null)
+													{
+														yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
+															leftTile.piece.GetComponent<AttackReactionComponent>().damages
+														);
+
+														var life = frontTile.piece.GetComponent<LifeComponent>();
+
+														if (!life.isAlive)
+														{
+															frontTile.DestroyPiece();
+															continue;
+														}
+													}
+												}
+
+												if (y < gridManager.gridSize.y)
+												{
+													Tile rightTile = gridManager.tileLines[x + 1].tiles[y + 1];
+
+													if (rightTile.piece && rightTile.piece.GetComponent<CanAttackAround>() != null)
+													{
+														yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
+															rightTile.piece.GetComponent<AttackReactionComponent>().damages
+														);
+
+														var life = frontTile.piece.GetComponent<LifeComponent>();
+
+														if (!life.isAlive)
+														{
+															frontTile.DestroyPiece();
+															continue;
+														}
+													}
+												}
+
+
+												//move on something
 												if (canWalkOnIt)
 												{
 													yield return canWalkOnIt.OnWalkOnIt();
@@ -156,10 +195,8 @@ public class SubTurnManager : Singleton<SubTurnManager>
 															}
 
 															break;
-
 													}
 												}
-
 											}
 
 											actionPoint.actualActionPoints--;
@@ -236,7 +273,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 										{
 											needRepass = true;
 										}
-									
+
 									}
 								}
 							}
