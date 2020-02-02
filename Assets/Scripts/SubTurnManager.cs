@@ -119,8 +119,6 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 															var frontAttack = frontPiece?.GetComponent<AttackReactionComponent>();
 
-															Debug.LogWarning("frontAttack: " + frontAttack);
-
 															if (frontAttack)
 															{
 																var life = frontTile.piece.GetComponent<LifeComponent>();
@@ -151,12 +149,10 @@ public class SubTurnManager : Singleton<SubTurnManager>
 
 															frontPiece.GetComponent<SoundComponent>()?.PlayCuandoSeBorra();
 
-															CanWalkOnIt frontCanWalkOnIt = frontPiece?.GetComponent<CanWalkOnIt>();
-
-															if (frontCanWalkOnIt && frontCanWalkOnIt.object_to_replace != null)
+															if (canWalkOnIt && canWalkOnIt.object_to_replace != null)
 															{
-																Instantiate(frontCanWalkOnIt.object_to_replace, frontPiece.transform.position, Quaternion.identity);
-																Destroy(frontPiece);
+																Instantiate(canWalkOnIt.object_to_replace, frontPiece.transform.position, Quaternion.identity);
+																Destroy(frontPiece.gameObject);
 															}
 
 															break;
