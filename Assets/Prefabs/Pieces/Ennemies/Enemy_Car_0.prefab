@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6227938d1b1054092beb170e934997d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  to_play_if_movement: {fileID: 8300000, guid: cf4e6146211971647868347d6e846f43, type: 3}
   CurrentTile: {x: 0, y: 0}
 --- !u!1001 &9099028255426829725
 PrefabInstance:

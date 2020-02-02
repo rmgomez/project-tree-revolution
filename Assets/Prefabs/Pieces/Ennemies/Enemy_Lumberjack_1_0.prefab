@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e18ec7318df496684e828a26f9bbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackForce: 1
+  damages: 1
+  animationDuration: 0
 --- !u!114 &4400956574332851415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +106,8 @@ MonoBehaviour:
   maxQuantity: 1
   actualQuantity: 0
   isAlive: 1
+  KeepLastVisual: 0
+  IsObjective: 0
   DisplayLife: 1
   DisplayLifeObject: {fileID: 980459296244557425, guid: b8be32e4c0e0742999043e4e5cb14f25,
     type: 3}
@@ -120,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6227938d1b1054092beb170e934997d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  to_play_if_movement: {fileID: 8300000, guid: ac309fa861d3bc243b3ad81473411bcb, type: 3}
   CurrentTile: {x: 0, y: 0}
 --- !u!1001 &8634338060012052055
 PrefabInstance:
