@@ -7,23 +7,12 @@ public class Scene_controller : MonoBehaviour
 {
     public string scene_name;
 
-    // Start is called before the first frame update
-    void Start()
+    public void change_scene(string levelName = "")
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void change_scene(string cosa = "")
-    {
-        if (cosa != "")
+        if (levelName != "")
         {
-            SceneManager.LoadScene(cosa);
+            //SceneManager.LoadScene(cosa);
+            LoadingManager.Instance.Load(levelName);
         }
     }
 }
