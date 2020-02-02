@@ -159,7 +159,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("Plant"))
         {
-            if (item.GetComponent<Add_nature_points_end_of_round>() != null)
+            if (item != null && item.GetComponent<Add_nature_points_end_of_round>() != null)
             {
 
                 if (particula_vida_extra != null) {

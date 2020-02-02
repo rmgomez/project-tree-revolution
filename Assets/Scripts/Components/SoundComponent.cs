@@ -33,4 +33,14 @@ public class SoundComponent : MonoBehaviour
             LevelManager.Instance.AudioSource.PlayOneShot(cuandoSeBorra);
         }
     }
+
+    [SerializeField]
+    private AudioClip cuandoExplota;
+    public void PlayCuandoExplota()
+    {
+        if (cuandoExplota != null)
+        {
+            LevelManager.Instance.AudioSource.PlayOneShot(cuandoExplota);
+        }
+    }
 }

@@ -174,6 +174,8 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													{
 														case WalkReaction.Explosion:
 
+															frontPiece.GetComponent<SoundComponent>()?.PlayCuandoExplota();
+
 															var frontAttack = frontPiece?.GetComponent<AttackReactionComponent>();
 
 															if (frontAttack)
@@ -253,7 +255,7 @@ public class SubTurnManager : Singleton<SubTurnManager>
 														{
 															GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(damage_sound);
 														}
-														
+
 														yield return attack.Action();
 
 														var frontLife = frontPiece.GetComponent<LifeComponent>();
