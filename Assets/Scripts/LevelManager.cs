@@ -179,9 +179,9 @@ public class LevelManager : Singleton<LevelManager>
 
                 yield return new WaitForSeconds(0.5f);
 
-                if (sonido_ganar_vida != null && gameObject.GetComponent<AudioSource>() != null)
+                if (sonido_ganar_vida != null)
                 {
-                    gameObject.GetComponent<AudioSource>().PlayOneShot(sonido_ganar_vida);
+                    AudioSource.PlayOneShot(sonido_ganar_vida);
                 }
 
                 CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;

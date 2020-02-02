@@ -67,7 +67,7 @@ MonoBehaviour:
   sonido_ganar_vida: {fileID: 8300000, guid: c1760b725f0a7e54cba9aee82f91d9c6, type: 3}
   particula_vida_extra: {fileID: 3551374259086975195, guid: e357573bf0491004783f65b50e619f93,
     type: 3}
-  AudioSource: {fileID: 0}
+  AudioSource: {fileID: 8344453966903873265}
 --- !u!82 &8344453966903873265
 AudioSource:
   m_ObjectHideFlags: 0
