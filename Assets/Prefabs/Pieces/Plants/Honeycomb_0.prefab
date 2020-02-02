@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8213225947600901017}
   - component: {fileID: 7866836283725702157}
   - component: {fileID: 7867457764639012599}
+  - component: {fileID: 114012984679245880}
   m_Layer: 0
   m_Name: Honeycomb_0
   m_TagString: Plant
@@ -63,6 +64,10 @@ MonoBehaviour:
   maxQuantity: 3
   actualQuantity: 0
   isAlive: 1
+  KeepLastVisual: 0
+  IsObjective: 0
+  DisplayLife: 0
+  DisplayLifeObject: {fileID: 0}
 --- !u!114 &7866836283725702157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +94,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 10
+--- !u!114 &114012984679245880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330788548991975521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3082d108f98fa8a479c65bef7535fe91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPutOnGrid: {fileID: 8300000, guid: 56dd4da9142bf1643be4eb183557c55f, type: 3}
+  soundOnDeath: {fileID: 0}
+  cuandoSeBorra: {fileID: 8300000, guid: 56dd4da9142bf1643be4eb183557c55f, type: 3}
 --- !u!1001 &4342539978565431551
 PrefabInstance:
   m_ObjectHideFlags: 0

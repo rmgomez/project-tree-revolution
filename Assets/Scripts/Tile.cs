@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour
 	public VisualTileInfo visualTileInfo;
 
 	public bool canPlantOnIt = true;
+	public Material alternative_tile_material;
 
 	private void Awake()
 	{
@@ -24,6 +25,9 @@ public class Tile : MonoBehaviour
 
 	public void CreateGround(GroundTypes newGroundType)
 	{
+		bool hay = false;
+		if (gameObject.name.EndsWith("_b")) { hay = true; }
+
 		groundType = newGroundType;
 
 		if (ground != null)
@@ -37,7 +41,13 @@ public class Tile : MonoBehaviour
 
 			if (prefab != null)
 			{
+				// prefab.transform.GetChild(0).GetComponent<Renderer>().material = alternative_tile_material;
+
 				ground = Instantiate(prefab, transform.position, prefab.transform.rotation, transform);
+				// ground.transform.GetChild(0).GetComponent<Renderer>().material = alternative_tile_material;
+
+				if (hay)
+				ground.GetComponent<Renderer>().material = alternative_tile_material;
 
 				canPlantOnIt = prefab.canPlantOnIt;
 			}
