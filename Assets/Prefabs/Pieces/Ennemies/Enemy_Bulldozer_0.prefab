@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55362771b70acae40b910725f18b8387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActionPoints: 1
+  maxActionPoints: 2
   actualActionPoints: 0
 --- !u!114 &3664234802874692067
 MonoBehaviour:
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e18ec7318df496684e828a26f9bbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damages: 3
+  damages: 2
   animationDuration: 0
 --- !u!114 &3686127549913739951
 MonoBehaviour:
