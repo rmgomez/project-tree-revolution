@@ -171,23 +171,34 @@ public class LevelManager : Singleton<LevelManager>
         {
             if (item != null && item.GetComponent<Add_nature_points_end_of_round>() != null)
             {
-
-
-                if (item.GetComponent<LifeComponent>() != null) {
+                
+                if (item.GetComponent<LifeComponent>() != null) 
+                {
                     if (item.GetComponent<LifeComponent>().actualQuantity == item.GetComponent<LifeComponent>().maxQuantity)
                     {
 
                         // Creamos la partícula de vida
-                        if (particula_vida_extra != null) {
+                        if (particula_vida_extra != null) 
+                        {
                             GameObject created_particle = GameObject.Instantiate(particula_vida_extra, item.transform.position, Quaternion.identity);
+                            
                             var text = created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
+                            
                             if(text != null) text.text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
                         }
+                        
                         // Esperamos un cachín y hacemos el resto
                         yield return new WaitForSeconds(0.5f);
-                        if (sonido_ganar_vida != null) { AudioSource.PlayOneShot(sonido_ganar_vida); }
-                        CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
 
+                        if (sonido_ganar_vida != null)
+                        {
+                            AudioSource.PlayOneShot(sonido_ganar_vida);
+                        }
+
+                        if (item != null)
+                        {
+                            CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
+                        }
                     }
                 }
                 else
