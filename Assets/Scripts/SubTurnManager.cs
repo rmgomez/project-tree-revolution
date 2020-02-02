@@ -114,8 +114,8 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													if (leftTile.piece && leftTile.piece.GetComponent<CanAttackAround>() != null)
 													{
 														// Sound effect to make damage
-														if (GameObject.Find("LevelManager") != null && 
-														GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && 
+														if (GameObject.Find("LevelManager") != null &&
+														GameObject.Find("LevelManager").GetComponent<AudioSource>() != null &&
 														damage_sound != null)
 														{
 															GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(damage_sound);
@@ -136,18 +136,16 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													}
 												}
 
-												if (y < gridManager.gridSize.y)
+												if (y + 1 < gridManager.gridSize.y)
 												{
 													Tile rightTile = gridManager.tileLines[x + 1].tiles[y + 1];
 
 													if (rightTile.piece && rightTile.piece.GetComponent<CanAttackAround>() != null)
 													{
 														// Sound effect to make damage
-														if (GameObject.Find("LevelManager") != null && 
-														GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && 
-														damage_sound != null)
+														if (damage_sound != null)
 														{
-															GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(damage_sound);
+															LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 														}
 
 														yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
@@ -181,11 +179,9 @@ public class SubTurnManager : Singleton<SubTurnManager>
 															if (frontAttack)
 															{
 																// Sound effect to make damage
-																if (GameObject.Find("LevelManager") != null && 
-																GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && 
-																damage_sound != null)
+																if (damage_sound != null)
 																{
-																	GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(damage_sound);
+																	LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 																}
 
 																var life = frontTile.piece.GetComponent<LifeComponent>();
@@ -249,11 +245,9 @@ public class SubTurnManager : Singleton<SubTurnManager>
 													if (attack != null)
 													{
 														// Sound effect to make damage
-														if (GameObject.Find("LevelManager") != null && 
-														GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && 
-														damage_sound != null)
+														if (damage_sound != null)
 														{
-															GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(damage_sound);
+															LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 														}
 
 														yield return attack.Action();
