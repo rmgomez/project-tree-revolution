@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellID: 0
   SpellName: TREE
-  NaturePoints: 5
+  NaturePoints: 6
   ButtonIcon: {fileID: 21300000, guid: 5ce90a1e454950241914bab1597cdacd, type: 3}
   PieceToSpawn: 1
   HealAmount: 0
+  AttackAmount: 0
   Action: 0
