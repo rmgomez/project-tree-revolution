@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
+    m_Left: 40
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   NextLevelButton: {fileID: 582281826}
   GoHomeButton: {fileID: 2621894760606764503}
   RestartButton: {fileID: 2074320066}
-  nextLevelName: scn_game_tutorial
+  nextLevelName: scn_game_level_2
   menuLevel: Menu_home
 --- !u!1 &942930088
 GameObject:
