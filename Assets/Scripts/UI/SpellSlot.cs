@@ -9,6 +9,7 @@ public class SpellSlot : MonoBehaviour
     public Toggle ToggleButton;
     public Text NaturePointsText;
     public Text SpellNameText;
+    public AudioClip select_this_button;
 
     private int _slotIndex;
 
@@ -24,6 +25,11 @@ public class SpellSlot : MonoBehaviour
 
     public void SelectSpell()
     {
+        if (GameObject.Find("LevelManager") != null && GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && select_this_button)
+        {
+            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(select_this_button);
+        }
+
         Debug.Log($"Is Slot {gameObject.name} on: {ToggleButton.isOn}");
         if (ToggleButton.isOn)
         {

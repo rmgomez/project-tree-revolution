@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 114110666951866822}
   - component: {fileID: 114067962529081856}
   - component: {fileID: 114080845199754906}
+  - component: {fileID: 114629479942600336}
   m_Layer: 0
   m_Name: Pumpkin_0
   m_TagString: Plant
@@ -123,6 +124,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 10
   animationDuration: 0
+--- !u!114 &114629479942600336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330788548991975521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3082d108f98fa8a479c65bef7535fe91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPutOnGrid: {fileID: 8300000, guid: 1b283a75454d21246bd46eaddde6dccd, type: 3}
+  soundOnDeath: {fileID: 0}
+  cuandoSeBorra: {fileID: 0}
+  cuandoExplota: {fileID: 8300000, guid: ba539565e6677cc4cb6866902530eac4, type: 3}
 --- !u!1001 &6419240272892085361
 PrefabInstance:
   m_ObjectHideFlags: 0

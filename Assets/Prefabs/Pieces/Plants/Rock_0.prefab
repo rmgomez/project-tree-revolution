@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7090205573009799266}
   - component: {fileID: 8213225947600901017}
   - component: {fileID: 7867457764639012599}
+  - component: {fileID: 114561748671973256}
   m_Layer: 0
   m_Name: Rock_0
   m_TagString: Plant
@@ -79,6 +80,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 10
+--- !u!114 &114561748671973256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330788548991975521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3082d108f98fa8a479c65bef7535fe91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPutOnGrid: {fileID: 8300000, guid: 55380995a685e604cbc6c1119eb7c537, type: 3}
+  soundOnDeath: {fileID: 0}
+  cuandoSeBorra: {fileID: 8300000, guid: 55380995a685e604cbc6c1119eb7c537, type: 3}
 --- !u!1001 &1432938279717978136
 PrefabInstance:
   m_ObjectHideFlags: 0

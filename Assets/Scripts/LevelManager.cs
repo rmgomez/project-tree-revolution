@@ -77,8 +77,32 @@ public class LevelManager : Singleton<LevelManager>
                 
                 case LevelState.EnemyTurn: yield return StartCoroutine(EnemyTurn()); break;
                 
-                case LevelState.PlayerTurn:yield return StartCoroutine(PlayerTurn()); break;
+                case LevelState.PlayerTurn:
+
+                    if (GameObject.Find("GridManager").GetComponent<GridManager>() != null) {
+                        GameObject.Find("GridManager").GetComponent<GridManager>().HideInteratableVisual();
+                    }
+
+                    yield return StartCoroutine(PlayerTurn()); 
+
+                    if (GameObject.Find("GridManager").GetComponent<GridManager>() != null) {
+                        GameObject.Find("GridManager").GetComponent<GridManager>().HideInteratableVisual();
+                    }
+
+                    foreach (Transform item in GameObject.Find("SpellBar").transform) {
+                        item.GetChild(1).GetComponent<Toggle>().isOn = false;
+                    }
+
+                    yield return new WaitForSeconds(0.1f);
+
+                    if (GameObject.Find("GridManager").GetComponent<GridManager>() != null) {
+                        GameObject.Find("GridManager").GetComponent<GridManager>().HideInteratableVisual();
+                    }
+                    break;
                 
+
+                // HideInteratableVisual();
+
                 case LevelState.LevelEnd:
                     //UIManager.Set
                     Debug.Log("Level Completed, go to endScreen");
@@ -144,7 +168,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("Plant"))
         {
-            if (item.GetComponent<Add_nature_points_end_of_round>() != null)
+            if (item != null && item.GetComponent<Add_nature_points_end_of_round>() != null)
             {
 
                 if (particula_vida_extra != null) {
@@ -173,9 +197,13 @@ public class LevelManager : Singleton<LevelManager>
         WatingForPlayer = true;
         CurrentNaturePoints += NaturePointsPerTurn;
         Debug.Log("[PLAYER TURN] STARTED");
-        
+
         OnPlayerTurnStarted?.Invoke();
-        
+
+        if (GameObject.Find("GridManager").GetComponent<GridManager>() != null) {
+            GameObject.Find("GridManager").GetComponent<GridManager>().HideInteratableVisual();
+        }
+
         yield return new WaitWhile(() => WatingForPlayer);
         
         OnPlayerTurnCompleted?.Invoke();
