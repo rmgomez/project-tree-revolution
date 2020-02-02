@@ -55,6 +55,7 @@ MonoBehaviour:
   ToggleButton: {fileID: 4961202008357107420}
   NaturePointsText: {fileID: 4961202008586263475}
   SpellNameText: {fileID: 4961202007399265565}
+  select_this_button: {fileID: 8300000, guid: b68b9531c0d7d894db00e9ee2002ed31, type: 3}
 --- !u!1 &4961202006745862335
 GameObject:
   m_ObjectHideFlags: 0

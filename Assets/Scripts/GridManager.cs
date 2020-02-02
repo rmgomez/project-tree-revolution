@@ -16,6 +16,8 @@ public class TileLine
 public class GridManager : Singleton<GridManager>
 {
 
+	Random rnd = new Random();
+
 	// Variables ///////////////////////////////////////////////////
 
 	private const string TagPlant = "Plant";
@@ -27,6 +29,7 @@ public class GridManager : Singleton<GridManager>
 	public Material alternative_tile_material;
 	public PrefabListScriptableObject prefabList;
 	public TileLine[] tileLines;
+	public GameObject[] grass_tiles;
 
 	// Aesthetic elements
 	// public GameObject prefab_borde_mapa;
@@ -194,9 +197,26 @@ public class GridManager : Singleton<GridManager>
 		}
 	}
 
+	public void Generate_grass() {
+
+		foreach (Transform tile in transform)
+		{
+			if (tile.GetComponent<Tile>() != null && tile.GetComponent<Tile>().pieceType == PieceTypes.Nothing)
+			{
+				int index = Random.Range (0, grass_tiles.Length);
+				if (grass_tiles[index] != null) {
+					GameObject.Instantiate(grass_tiles[index], tile.position, Quaternion.identity);
+
+				}
+			}
+
+		}
+	}
+
 	private void Start()
 	{
 		Generate_map_borders();
+		Generate_grass();
 	}
 
 
