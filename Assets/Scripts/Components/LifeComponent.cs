@@ -11,7 +11,7 @@ public class LifeComponent : MonoBehaviour
 
     [Range(0, 10)]
     public int maxQuantity = 1;
-    [HideInInspector]
+    // [HideInInspector]
     public int actualQuantity;
 
     public bool isAlive = true;
