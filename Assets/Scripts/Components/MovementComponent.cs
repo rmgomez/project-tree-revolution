@@ -15,25 +15,32 @@ public class MovementComponent : MonoBehaviour
 
     public IEnumerator Action()
     {
-
-        if (GameObject.Find("LevelManager") != null && GameObject.Find("LevelManager").GetComponent<AudioSource>() != null && to_play_if_movement != null)
+        if (to_play_if_movement != null)
         {
-            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(to_play_if_movement);
+            LevelManager.Instance.AudioSource.PlayOneShot(to_play_if_movement);
         }
 
-        Vector3 prePos = transform.position;
-        Vector3 nextPos = prePos + Vector3.right;
-
-        float pourcent = 0;
-
-        while (pourcent < 1)
+        if (moveDuration > 0)
         {
-            pourcent += Time.deltaTime / moveDuration;
+            Vector3 prePos = transform.position;
+            Vector3 nextPos = prePos + Vector3.right;
 
-            transform.position = Vector3.LerpUnclamped(prePos, nextPos, Easing.EaseInOut(pourcent, EasingType.Back));
 
-            yield return null;
+            float pourcent = 0;
+
+            while (pourcent < 1)
+            {
+                pourcent += Time.deltaTime / moveDuration;
+
+                transform.position = Vector3.LerpUnclamped(prePos, nextPos, Easing.EaseInOut(pourcent, EasingType.Back));
+
+                yield return null;
+            }
         }
+        else
+        {
+            transform.position += Vector3.right;
+        }   
     }
 
 }

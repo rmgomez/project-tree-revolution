@@ -65,82 +65,124 @@ public class SubTurnManager : Singleton<SubTurnManager>
 				{
 					Tile tile = gridManager.tileLines[x].tiles[y];
 
-					if (tile.piece != null)
+					if (tile.piece == null)
 					{
-						Piece actualPiece = tile.piece;
+						continue;
+					}
 
-						var priorityComponent = actualPiece.GetComponent<PriorityComponent>();
+					Piece actualPiece = tile.piece;
 
-						if (priorityComponent != null)
+					var priorityComponent = actualPiece.GetComponent<PriorityComponent>();
+
+					if (priorityComponent == null)
+					{
+						Debug.LogError("Need to add a ActionPointComponent", actualPiece);
+						continue;
+					}
+
+					if (priorityComponent.priority == actualPriority)
+					{
+						var actionPoint = actualPiece.GetComponent<ActionPointComponent>();
+
+						//Check if can do action
+						if (actionPoint && actionPoint.actualActionPoints > 0)
 						{
-							if (priorityComponent.priority == actualPriority)
+							//Check what is in front
+							if (x + 1 < gridManager.gridSize.x)
 							{
-								var actionPoint = actualPiece.GetComponent<ActionPointComponent>();
+								var frontTile = gridManager.tileLines[x + 1].tiles[y];
+								var frontPiece = frontTile.piece;
 
-								//Check if can do action
-								if (actionPoint && actionPoint.actualActionPoints > 0)
+								CanWalkOnIt canWalkOnIt = null;
+
+								if (frontPiece != null)
 								{
-									//Check what is in front
-									if (x + 1 < gridManager.gridSize.x)
+									canWalkOnIt = frontPiece.GetComponent<CanWalkOnIt>();
+								}
+
+								if (frontPiece == null || canWalkOnIt != null)
+								{
+									var move = actualPiece.GetComponent<MovementComponent>();
+
+									if (move != null)
 									{
-										var frontTile = gridManager.tileLines[x + 1].tiles[y];
-										var frontPiece = frontTile.piece;
+										//move
+										yield return move.Action();
 
-										CanWalkOnIt canWalkOnIt = null;
+										frontTile.ChangePiece(tile.piece, tile.pieceType);
+										tile.RemovePiece();
 
-										if (frontPiece != null)
+										//Check the side
+										if (y > 0)
 										{
-											canWalkOnIt = frontPiece.GetComponent<CanWalkOnIt>();
-										}
+											Tile leftTile = gridManager.tileLines[x + 1].tiles[y - 1];
 
-										if (frontPiece == null || canWalkOnIt != null)
-										{
-											var move = actualPiece.GetComponent<MovementComponent>();
-
-											if (move != null)
+											if (leftTile.piece && leftTile.piece.GetComponent<CanAttackAround>() != null)
 											{
-												//move
-												yield return move.Action();
-
-												frontTile.ChangePiece(tile.piece, tile.pieceType);
-												tile.RemovePiece();
-
-												//Check the side
-
-												if (y > 0)
+												// Sound effect to make damage
+												if (damage_sound != null)
 												{
-													Tile leftTile = gridManager.tileLines[x + 1].tiles[y - 1];
-
-													if (leftTile.piece && leftTile.piece.GetComponent<CanAttackAround>() != null)
-													{
-														// Sound effect to make damage
-														if (GameObject.Find("LevelManager") != null &&
-														GameObject.Find("LevelManager").GetComponent<AudioSource>() != null &&
-														damage_sound != null)
-														{
-															GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(damage_sound);
-														}
-
-
-														yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
-															leftTile.piece.GetComponent<AttackReactionComponent>().damages
-														);
-
-														var life = frontTile.piece.GetComponent<LifeComponent>();
-
-														if (!life.isAlive)
-														{
-															frontTile.DestroyPiece();
-															continue;
-														}
-													}
+													LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 												}
 
-												if (y + 1 < gridManager.gridSize.y)
-												{
-													Tile rightTile = gridManager.tileLines[x + 1].tiles[y + 1];
+												yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
+													leftTile.piece.GetComponent<AttackReactionComponent>().damages
+												);
 
-													if (rightTile.piece && rightTile.piece.GetComponent<CanAttackAround>() != null)
+												var life = frontTile.piece.GetComponent<LifeComponent>();
+
+												if (!life.isAlive)
+												{
+													frontTile.DestroyPiece();
+													actionPoint.actualActionPoints = 0;
+													continue;
+												}
+											}
+										}
+
+										if (y + 1 < gridManager.gridSize.y)
+										{
+											Tile rightTile = gridManager.tileLines[x + 1].tiles[y + 1];
+
+											if (rightTile.piece && rightTile.piece.GetComponent<CanAttackAround>() != null)
+											{
+												// Sound effect to make damage
+												if (damage_sound != null)
+												{
+													LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
+												}
+
+												yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
+													rightTile.piece.GetComponent<AttackReactionComponent>().damages
+												);
+
+												var life = frontTile.piece.GetComponent<LifeComponent>();
+
+												if (!life.isAlive)
+												{
+													frontTile.DestroyPiece();
+
+													actionPoint.actualActionPoints = 0;
+													continue;
+												}
+											}
+										}
+
+
+										//move on something
+										if (canWalkOnIt)
+										{
+											yield return canWalkOnIt.OnWalkOnIt();
+
+											switch (canWalkOnIt.walkReaction)
+											{
+												case WalkReaction.Explosion:
+
+													frontPiece.GetComponent<SoundComponent>()?.PlayCuandoExplota();
+
+													var frontAttack = frontPiece?.GetComponent<AttackReactionComponent>();
+
+													if (frontAttack)
 													{
 														// Sound effect to make damage
 														if (damage_sound != null)
@@ -148,175 +190,135 @@ public class SubTurnManager : Singleton<SubTurnManager>
 															LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 														}
 
-														yield return frontTile.piece.GetComponent<LifeComponent>()?.GetDamage(
-															rightTile.piece.GetComponent<AttackReactionComponent>().damages
-														);
-
 														var life = frontTile.piece.GetComponent<LifeComponent>();
-
-														if (!life.isAlive)
+														if (life)
 														{
-															frontTile.DestroyPiece();
-															continue;
+															yield return life.GetDamage(frontAttack.damages);
+
+															if (!life.isAlive)
+															{
+																frontTile.DestroyPiece();
+															}
 														}
 													}
+
+													var frontLife = frontPiece?.GetComponent<LifeComponent>();
+
+													yield return frontLife?.Death();
+
+													if (!frontLife.isAlive)
+													{
+														Destroy(frontPiece.gameObject);
+													}
+
+													frontTile.CreateGround(GroundTypes.Explosed);
+													break;
+
+												case WalkReaction.DeleteAndReplace:
+
+													frontPiece.GetComponent<SoundComponent>()?.PlayCuandoSeBorra();
+
+													if (canWalkOnIt && canWalkOnIt.object_to_replace != null)
+													{
+														Instantiate(canWalkOnIt.object_to_replace, frontPiece.transform.position, Quaternion.identity);
+														Destroy(frontPiece.gameObject);
+													}
+
+													break;
+											}
+										}
+									}
+
+									actionPoint.actualActionPoints--;
+								}
+								else
+								{
+									const string TagEnemy = "Enemy";
+									if (frontPiece.CompareTag(TagEnemy))
+									{
+										//wait
+										needRepass = true;
+										continue;
+									}
+									else
+									{
+										const string TagPlant = "Plant";
+										if (frontPiece.CompareTag(TagPlant))
+										{
+											//attack
+											var attack = actualPiece.GetComponent<AttackComponent>();
+
+											if (attack != null)
+											{
+												// Sound effect to make damage
+												if (damage_sound != null)
+												{
+													LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
 												}
 
+												yield return attack.Action();
 
-												//move on something
-												if (canWalkOnIt)
+												var frontLife = frontPiece.GetComponent<LifeComponent>();
+
+												if (frontLife != null)
 												{
-													yield return canWalkOnIt.OnWalkOnIt();
+													yield return frontLife.GetDamage(attack.damages);
 
-													switch (canWalkOnIt.walkReaction)
+													if (!frontLife.isAlive)
 													{
-														case WalkReaction.Explosion:
+														if (!frontLife.KeepLastVisual)
+														{
+															frontTile.DestroyPiece();
+														}
+														else
+														{
+															frontTile.RemovePiece();
+															frontTile.canPlantOnIt = false;
+														}
+													}
+													else
+													{
+														var attackReaction = frontPiece.GetComponent<AttackReactionComponent>();
 
-															frontPiece.GetComponent<SoundComponent>()?.PlayCuandoExplota();
+														if (attackReaction != null)
+														{
+															yield return attackReaction.Action();
 
-															var frontAttack = frontPiece?.GetComponent<AttackReactionComponent>();
+															var life = actualPiece.GetComponent<LifeComponent>();
 
-															if (frontAttack)
+															if (life != null)
 															{
-																// Sound effect to make damage
-																if (damage_sound != null)
+																yield return life.GetDamage(attackReaction.damages);
+
+																if (!life.isAlive)
 																{
-																	LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
-																}
-
-																var life = frontTile.piece.GetComponent<LifeComponent>();
-																if (life)
-																{
-																	yield return life.GetDamage(frontAttack.damages);
-
-																	if (!life.isAlive)
-																	{
-																		frontTile.DestroyPiece();
-																	}
+																	tile.DestroyPiece();
 																}
 															}
-
-															var frontLife = frontPiece?.GetComponent<LifeComponent>();
-
-															yield return frontLife?.Death();
-
-															if (!frontLife.isAlive)
-															{
-																Destroy(frontPiece.gameObject);
-															}
-
-															frontTile.CreateGround(GroundTypes.Explosed);
-															break;
-
-														case WalkReaction.DeleteAndReplace:
-
-															frontPiece.GetComponent<SoundComponent>()?.PlayCuandoSeBorra();
-
-															if (canWalkOnIt && canWalkOnIt.object_to_replace != null)
-															{
-																Instantiate(canWalkOnIt.object_to_replace, frontPiece.transform.position, Quaternion.identity);
-																Destroy(frontPiece.gameObject);
-															}
-
-															break;
+														}
 													}
 												}
 											}
 
 											actionPoint.actualActionPoints--;
 										}
-										else
-										{
-											const string TagEnemy = "Enemy";
-											if (frontPiece.CompareTag(TagEnemy))
-											{
-												//wait
-												needRepass = true;
-												continue;
-											}
-											else
-											{
-												const string TagPlant = "Plant";
-												if (frontPiece.CompareTag(TagPlant))
-												{
-													//attack
-													var attack = actualPiece.GetComponent<AttackComponent>();
-
-													if (attack != null)
-													{
-														// Sound effect to make damage
-														if (damage_sound != null)
-														{
-															LevelManager.Instance.AudioSource.PlayOneShot(damage_sound);
-														}
-
-														yield return attack.Action();
-
-														var frontLife = frontPiece.GetComponent<LifeComponent>();
-
-														if (frontLife != null)
-														{
-															yield return frontLife.GetDamage(attack.damages);
-
-															if (!frontLife.isAlive)
-															{
-																if (!frontLife.KeepLastVisual)
-																{
-																	frontTile.DestroyPiece();
-																}
-																else
-																{
-																	frontTile.RemovePiece();
-																	frontTile.canPlantOnIt = false;
-																}
-															}
-															else
-															{
-																var attackReaction = frontPiece.GetComponent<AttackReactionComponent>();
-
-																if (attackReaction != null)
-																{
-																	yield return attackReaction.Action();
-
-																	var life = actualPiece.GetComponent<LifeComponent>();
-
-																	if (life != null)
-																	{
-																		yield return life.GetDamage(attackReaction.damages);
-
-																		if (!life.isAlive)
-																		{
-																			tile.DestroyPiece();
-																		}
-																	}
-																}
-															}
-														}
-													}
-
-													actionPoint.actualActionPoints--;
-												}
-											}
-										}
-
-										if (actionPoint.actualActionPoints > 0)
-										{
-											needRepass = true;
-										}
-
 									}
 								}
+
+								if (actionPoint.actualActionPoints > 0)
+								{
+									needRepass = true;
+								}
 							}
-							else if (priorityComponent.priority > maxPriorityFind)
-							{
-								maxPriorityFind = priorityComponent.priority;
-							}
-						}
-						else
-						{
-							Debug.LogError("Need to add a ActionPointComponent", actualPiece);
 						}
 					}
+					else if (priorityComponent.priority > maxPriorityFind)
+					{
+						maxPriorityFind = priorityComponent.priority;
+					}
+
+
+
 				}
 			}
 
