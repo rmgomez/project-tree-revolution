@@ -12,8 +12,10 @@ public class EndLevelUI : MonoBehaviour
     public GameObject GoHomeButton;
 
     public GameObject RestartButton;
-    // Start is called before the first frame update
-    
+
+    public string nextLevelName = "scn_game_tutorial";
+    public string menuLevel = "Menu_home";
+
     public void Init(bool hasWon)
     {
         EndLevelText.text = hasWon ? "LEVEL COMPLETE" : "<color=red>LEVEL FAILED</color>";
@@ -37,16 +39,16 @@ public class EndLevelUI : MonoBehaviour
 
     public void RestartLevel()
     {
-        
+        LoadingManager.Instance.ReloadActualScene();
     }
 
     public void NextLevel()
     {
-        
+        LoadingManager.Instance.Load(nextLevelName);
     }
 
     public void GoHome()
     {
-        
+        LoadingManager.Instance.Load(menuLevel);
     }
 }
