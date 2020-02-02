@@ -217,6 +217,7 @@ public class GridManager : Singleton<GridManager>
 	{
 		Generate_map_borders();
 		Generate_grass();
+		HideInteratableVisual();
 	}
 
 
