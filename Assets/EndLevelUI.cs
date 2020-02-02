@@ -22,12 +22,15 @@ public class EndLevelUI : MonoBehaviour
 
         if (hasWon)
         {
+            NextLevelButton.SetActive(true);
             RestartButton.SetActive(false);
+            GoHomeButton.SetActive(true);
             //enable win buttons
         }
         else
         {
-            NextLevelButton.SetActive(true);
+            NextLevelButton.SetActive(false);
+            RestartButton.SetActive(true);
             GoHomeButton.SetActive(true);
             //enable lose button
         }
@@ -44,7 +47,7 @@ public class EndLevelUI : MonoBehaviour
 
     public void NextLevel()
     {
-        LoadingManager.Instance.Load(nextLevelName);
+        LoadingManager.Instance.NextScene();
     }
 
     public void GoHome()
