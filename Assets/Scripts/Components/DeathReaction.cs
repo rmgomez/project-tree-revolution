@@ -10,7 +10,7 @@ public class DeathReaction : MonoBehaviour
     {
         float pourcent = 0;
 
-        while (pourcent < 1)
+        while (pourcent < 1 && animationDuration > 0)
         {
             pourcent += Time.deltaTime / animationDuration;
 

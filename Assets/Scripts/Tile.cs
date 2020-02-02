@@ -100,6 +100,13 @@ public class Tile : MonoBehaviour
 	{
 		Destroy(piece.gameObject);
 
+		var ActionPointComponent = GetComponent<ActionPointComponent>();
+
+		if (ActionPointComponent)
+		{
+			ActionPointComponent.actualActionPoints = 0;
+		}
+
 		piece = null;
 		pieceType = PieceTypes.Nothing;
 

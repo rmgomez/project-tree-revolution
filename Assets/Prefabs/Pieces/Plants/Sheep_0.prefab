@@ -125,6 +125,7 @@ MonoBehaviour:
   soundPutOnGrid: {fileID: 8300000, guid: 3a500e57cf51c0348af7c4342ea99e30, type: 3}
   soundOnDeath: {fileID: 0}
   cuandoSeBorra: {fileID: 8300000, guid: 3a500e57cf51c0348af7c4342ea99e30, type: 3}
+  cuandoExplota: {fileID: 0}
 --- !u!1001 &2338017182353927259
 PrefabInstance:
   m_ObjectHideFlags: 0

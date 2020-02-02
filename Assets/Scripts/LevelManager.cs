@@ -172,23 +172,43 @@ public class LevelManager : Singleton<LevelManager>
             if (item != null && item.GetComponent<Add_nature_points_end_of_round>() != null)
             {
 
-                if (particula_vida_extra != null) {
-                    GameObject created_particle = GameObject.Instantiate(particula_vida_extra, item.transform.position, Quaternion.identity);
-                    created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
+
+                if (item.GetComponent<LifeComponent>() != null) {
+                    if (item.GetComponent<LifeComponent>().actualQuantity == item.GetComponent<LifeComponent>().maxQuantity)
+                    {
+
+                        // Creamos la partícula de vida
+                        if (particula_vida_extra != null) {
+                            GameObject created_particle = GameObject.Instantiate(particula_vida_extra, item.transform.position, Quaternion.identity);
+                            created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
+                        }
+                        // Esperamos un cachín y hacemos el resto
+                        yield return new WaitForSeconds(0.5f);
+                        if (sonido_ganar_vida != null) { AudioSource.PlayOneShot(sonido_ganar_vida); }
+                        CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
+
+                    }
                 }
-                
-
-                yield return new WaitForSeconds(0.5f);
-
-                if (sonido_ganar_vida != null)
+                else
                 {
-                    AudioSource.PlayOneShot(sonido_ganar_vida);
+
+                    // Creamos la partícula de vida
+                    if (particula_vida_extra != null) {
+                        GameObject created_particle = GameObject.Instantiate(particula_vida_extra, item.transform.position, Quaternion.identity);
+                        created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
+                    }
+                    // Esperamos un cachín y hacemos el resto
+                    yield return new WaitForSeconds(0.5f);
+                    if (sonido_ganar_vida != null) { AudioSource.PlayOneShot(sonido_ganar_vida); }
+                    CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
+
                 }
 
-                CurrentNaturePoints += item.GetComponent<Add_nature_points_end_of_round>().to_add;
 
-                // lista_a_añadir.Add(item);
-                // yield return new WaitForSeconds(0.5f);
+
+
+
+
             }
         }
     }
