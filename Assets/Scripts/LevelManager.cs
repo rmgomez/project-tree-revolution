@@ -180,7 +180,8 @@ public class LevelManager : Singleton<LevelManager>
                         // Creamos la partícula de vida
                         if (particula_vida_extra != null) {
                             GameObject created_particle = GameObject.Instantiate(particula_vida_extra, item.transform.position, Quaternion.identity);
-                            created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
+                            var text = created_particle.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
+                            if(text != null) text.text = "+" + item.GetComponent<Add_nature_points_end_of_round>().to_add.ToString();
                         }
                         // Esperamos un cachín y hacemos el resto
                         yield return new WaitForSeconds(0.5f);
