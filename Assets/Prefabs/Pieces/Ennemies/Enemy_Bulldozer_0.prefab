@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd8545909f3b40acbd736a19ac7fd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxQuantity: 2
+  maxQuantity: 4
   actualQuantity: 0
   isAlive: 1
   KeepLastVisual: 0
